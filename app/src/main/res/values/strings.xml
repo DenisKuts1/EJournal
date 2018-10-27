@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">EJournal</string>
+
+    <string name="title_activity_launch">LaunchActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="chnu">ЧНУ</string>
+    <string name="launch_welcome_text">Welcome to CHNU Journal</string>
+    <string name="launch_sign_in">Sign in to view your schedule, track marks progress and make reports</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_schedule">Schedule</string>
+    <string name="title_subject">Subject</string>
+    <string name="title_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="server_id">300717966349-6p1td5j7ic9qsm0ra8clctg700n457ef.apps.googleusercontent.com</string>
+</resources>

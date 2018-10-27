@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e7b091</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="launch_image_background">#fcd3b6</color>
+    <color name="launch_status_bar">#e7b091</color>
+    <color name="launch_chnu_text">#fff1e3</color>
+    <color name="launch_welcome_text">#eac0af</color>
+    <color name="launch_sign_in">#a7a7a7</color>
+</resources>
