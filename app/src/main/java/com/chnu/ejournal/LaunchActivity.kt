@@ -3,6 +3,7 @@ package com.chnu.ejournal
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -11,6 +12,11 @@ import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.activity_launch.*
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
+import java.lang.Exception
+import java.util.*
 
 class LaunchActivity : AppCompatActivity() {
 
@@ -46,14 +52,44 @@ class LaunchActivity : AppCompatActivity() {
 
 
 
-        val response = MyRetrofitApi.auth(status)
+        /*val response = MyRetrofitApi.auth(status)
         if(response.isSuccessful){
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("email", response.body().email)
             intent.putExtra("token", status)
             startActivity(intent)
-        }
+        }*/
+        Log.i("STATE", "12312312312313123123WOWOWOWOWOWOWOWOW123333333333331232313")
+        Observable.create<String> {
+            subscriber ->
+            try {
+                Log.i("STATE", "12312312312313123123WOWOWOWOWOWOWOWOW123333333333331232313")
+                val response = MyRetrofitApi.auth(status)
+                Log.i("STATE", "12312312312313123123WOWOWOWOWOWOWOWOW123333333333331232313")
+                if(response.isSuccessful){
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("email", "qwe")
+                    intent.putExtra("token", status)
+                    startActivity(intent)
+                    Log.i("STATE", "12312312312313123123WOWOWOWOWOWOWOWOW")
+                } else {
+                    Log.i("STATE", "WOWOWOWOWOWOWOWOW")
+                }
+            } catch (e: Exception){
+                e.printStackTrace()
+            }
+            subscriber.onNext("")
+            subscriber.onCompleted()
+        }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                { retrievedNews ->
 
+                },
+                { e ->
+
+                }
+        )
 
 
         /*val intent = Intent(this, MainActivity::class.java)

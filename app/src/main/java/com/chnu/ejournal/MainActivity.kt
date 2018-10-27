@@ -53,6 +53,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(this, "${intent.getStringExtra("email")}: ${intent.getStringExtra("token")}", Toast.LENGTH_SHORT).show()
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        Log.i("STATE", intent.getStringExtra("token"))
+
     }
 }
