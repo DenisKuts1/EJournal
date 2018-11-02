@@ -4,10 +4,12 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
+import retrofit2.http.Body
 
 interface RESTApi {
+
     @POST("/auth")
-    fun auth(@Query("token") token: String): Call<AuthResponse>
+    fun auth(@Body token: String): Call<AuthResponse>
 
     @GET("/top.json")
     fun getTop(@Query("after") after: String,
