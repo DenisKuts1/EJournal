@@ -11,6 +11,12 @@ interface RESTApi {
     @POST("/auth")
     fun auth(@Body token: String): Call<AuthResponse>
 
+    @GET("/just_get")
+    fun justGet(): Call<TestResponse>
+
+    @GET("/secure_get")
+    fun secureGet(): Call<TestResponse>
+
     @GET("/top.json")
     fun getTop(@Query("after") after: String,
                @Query("limit") limit: String)

@@ -59,21 +59,17 @@ class LaunchActivity : AppCompatActivity() {
             intent.putExtra("token", status)
             startActivity(intent)
         }*/
-        Log.i("STATE", "12312312312313123123WOWOWOWOWOWOWOWOW123333333333331232313")
         Observable.create<String> {
             subscriber ->
             try {
-                Log.i("STATE", "12312312312313123123WOWOWOWOWOWOWOWOW123333333333331232313")
                 val response = MyRetrofitApi.auth(status)
-                Log.i("STATE", "12312312312313123123WOWOWOWOWOWOWOWOW123333333333331232313")
                 if(response.isSuccessful){
                     val intent = Intent(this, MainActivity::class.java)
                     intent.putExtra("email", "qwe")
                     intent.putExtra("token", status)
                     startActivity(intent)
-                    Log.i("STATE", "12312312312313123123WOWOWOWOWOWOWOWOW")
                 } else {
-                    Log.i("STATE", "WOWOWOWOWOWOWOWOW")
+
                 }
             } catch (e: Exception){
                 e.printStackTrace()

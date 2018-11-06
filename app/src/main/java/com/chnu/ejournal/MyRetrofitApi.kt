@@ -16,5 +16,8 @@ object MyRetrofitApi {
        // Log.i("ЬУУУУУУУУУІІІІІІІІІІуп", it.message())
     }
 
+    fun justGet() = api.justGet().execute()
+    fun secureGet() = api.secureGet().execute()
+
     fun getNews(after: String, limit: String) = api.getTop(after, limit).execute()
 }
