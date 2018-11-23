@@ -2,6 +2,7 @@ package com.chnu.ejournal
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Looper
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -62,7 +63,8 @@ class MainActivity : AppCompatActivity() {
                 try {
                     val response = MyRetrofitApi.justGet()
                     if(response.isSuccessful){
-                        Toast.makeText(this, response.body().test, Toast.LENGTH_SHORT).show()
+                        Looper.prepare()
+                        Toast.makeText(this, response.body()!!.test, Toast.LENGTH_SHORT).show()
                     } else {
 
                     }
@@ -83,13 +85,14 @@ class MainActivity : AppCompatActivity() {
                     )
         }
 
-        first_button.setOnClickListener {
+        second_button.setOnClickListener {
             Observable.create<String> {
                 subscriber ->
                 try {
                     val response = MyRetrofitApi.secureGet()
                     if(response.isSuccessful){
-                        Toast.makeText(this, response.body().test, Toast.LENGTH_SHORT).show()
+                        Looper.prepare()
+                        Toast.makeText(this, response.body()!!.test, Toast.LENGTH_SHORT).show()
                     } else {
 
                     }

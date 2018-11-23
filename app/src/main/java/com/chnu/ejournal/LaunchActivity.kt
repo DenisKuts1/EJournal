@@ -8,10 +8,8 @@ import android.view.Window
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.activity_launch.*
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers

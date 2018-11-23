@@ -9,4 +9,11 @@
         <attr name="metaButtonBarButtonStyle" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="MyAppTheme">
+        <attr name="primaryTextColor" format="color"/>
+        <attr name="secondaryTextColor" format="color"/>
+        <attr name="backgroundColor" format="color"/>
+
+    </declare-styleable>
+
 </resources>
