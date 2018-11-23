@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Response
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -60,24 +61,20 @@ class MainActivity : AppCompatActivity() {
         first_button.setOnClickListener {
             Observable.create<String> {
                 subscriber ->
+                var response: Response<TestResponse>?
                 try {
-                    val response = MyRetrofitApi.justGet()
-                    if(response.isSuccessful){
-                        Looper.prepare()
-                        Toast.makeText(this, response.body()!!.test, Toast.LENGTH_SHORT).show()
-                    } else {
-
-                    }
+                    response = MyRetrofitApi.justGet()
                 } catch (e: Exception){
+                    response = null
                     e.printStackTrace()
                 }
-                subscriber.onNext("")
+                subscriber.onNext(response!!.body()!!.test)
                 subscriber.onCompleted()
             }.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
-                            { retrievedNews ->
-
+                            { text ->
+                                textView.text = text
                             },
                             { e ->
 
@@ -86,26 +83,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         second_button.setOnClickListener {
-            Observable.create<String> {
+           Observable.create<String> {
                 subscriber ->
+                var response: Response<TestResponse>?
                 try {
-                    val response = MyRetrofitApi.secureGet()
-                    if(response.isSuccessful){
-                        Looper.prepare()
-                        Toast.makeText(this, response.body()!!.test, Toast.LENGTH_SHORT).show()
-                    } else {
-
-                    }
+                    response = MyRetrofitApi.secureGet()
                 } catch (e: Exception){
+                    response = null
                     e.printStackTrace()
                 }
-                subscriber.onNext("")
+                subscriber.onNext(response!!.body()!!.test)
                 subscriber.onCompleted()
             }.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
-                            { retrievedNews ->
-
+                            { text ->
+                                textView.text = text
                             },
                             { e ->
 
