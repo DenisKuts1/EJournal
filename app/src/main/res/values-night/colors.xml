@@ -2,12 +2,11 @@
 <resources>
     <color name="colorPrimary">#fad5b8</color>
     <color name="colorPrimaryDark">#e6b388</color>
-    <color name="colorBackground">#ffffff</color>
-    <color name="iconColor">#686868</color>
+    <color name="colorBackground">#303030</color>
+    <color name="iconColor">#ffffff</color>
 
-    <color name="colorTextPrimary"> #000000</color>
+    <color name="colorTextPrimary"> #ffffff</color>
     <color name="colorTextSecondary"> #858585</color>
-
 
     <color name="launch_image_background">#fcd3b6</color>
     <color name="launch_status_bar">#e7b091</color>

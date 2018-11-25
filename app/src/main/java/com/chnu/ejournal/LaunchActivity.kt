@@ -1,9 +1,12 @@
 package com.chnu.ejournal
 
 import android.content.Intent
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatDelegate
 import android.util.Log
+import android.view.View
 import android.view.Window
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -19,9 +22,24 @@ import java.util.*
 class LaunchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val locale = Locale(App.instance.language)
+        val config = baseContext.resources.configuration
+        config.setLocale(locale)
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
+
+        if (App.instance.isNotificationsEnabled) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+
         setContentView(R.layout.activity_launch)
+
+
         val account = GoogleSignIn.getLastSignedInAccount(this)
         if(account != null) {
             beginWork(account.email!!, account.idToken!!)
@@ -48,16 +66,7 @@ class LaunchActivity : AppCompatActivity() {
 
     fun beginWork(email: String, status: String){
 
-
-
-        /*val response = MyRetrofitApi.auth(status)
-        if(response.isSuccessful){
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("email", response.body().email)
-            intent.putExtra("token", status)
-            startActivity(intent)
-        }*/
-        Observable.create<String> {
+        /*Observable.create<String> {
             subscriber ->
             try {
                 val response = MyRetrofitApi.auth(status)
@@ -83,12 +92,12 @@ class LaunchActivity : AppCompatActivity() {
                 { e ->
 
                 }
-        )
+        )*/
 
 
-        /*val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("email", email)
         intent.putExtra("token", status)
-        startActivity(intent)*/
+        startActivity(intent)
     }
 }

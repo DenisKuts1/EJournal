@@ -1,12 +1,15 @@
 package com.chnu.ejournal
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.app.AppCompatDelegate
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Response
@@ -57,6 +60,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (App.instance.isNightModeEnabled) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            }
+        }
+
+
         setContentView(R.layout.activity_main)
         first_button.setOnClickListener {
             Observable.create<String> {
@@ -105,7 +118,7 @@ class MainActivity : AppCompatActivity() {
                             }
                     )
         }
-        Toast.makeText(this, "${intent.getStringExtra("email")}: ${intent.getStringExtra("token")}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "${intent.getStringExtra("email")}: ${intent.getStringExtra("token")}", Toast.LENGTH_SHORT).show()
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
     }

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">EJournal</string>
+
+    <string name="chnu">ЧНУ</string>
+    <string name="launch_welcome_text">Вітаємо в CHNU Journal</string>
+    <string name="launch_sign_in">Увійдіть, щоб переглядати свій розклад, відслідковувати оцінки і створювати звіти</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="title_schedule">Розклад</string>
+    <string name="title_subject">Предмети</string>
+    <string name="title_settings">Налаштування</string>
+
+    <string name="language">Мова</string>
+    <string name="english">Англійська</string>
+    <string name="ukrainian">Українська</string>
+    <string name="russian">Россійська</string>
+    <string name="receive_notifications">Отримувати оповіщення</string>
+    <string name="do_not_receive_notifications">Не отримувати оповіщення</string>
+    <string name="notifications">Оповіщення</string>
+    <string name="night_mode">Нічний режим</string>
+    <string name="enable_dark_color_scheme">Увімкнути темну колірну схему</string>
+    <string name="disable_dark_color_scheme">Вимкнути темну колірну схему</string>
+
+</resources>

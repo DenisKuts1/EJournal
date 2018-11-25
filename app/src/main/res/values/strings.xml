@@ -2,8 +2,6 @@
     <string name="app_name">EJournal</string>
 
     <string name="title_activity_launch">LaunchActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="chnu">ЧНУ</string>
     <string name="launch_welcome_text">Welcome to CHNU Journal</string>
     <string name="launch_sign_in">Sign in to view your schedule, track marks progress and make reports</string>
@@ -18,4 +16,14 @@
 
 
     <string name="server_id">300717966349-6p1td5j7ic9qsm0ra8clctg700n457ef.apps.googleusercontent.com</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="ukrainian">Ukrainian</string>
+    <string name="russian">Russian</string>
+    <string name="receive_notifications">Receive notifications</string>
+    <string name="do_not_receive_notifications">Do not receive notifications</string>
+    <string name="notifications">Notifications</string>
+    <string name="night_mode">Night mode</string>
+    <string name="enable_dark_color_scheme">Enable dark color scheme</string>
+    <string name="disable_dark_color_scheme">Disable dark color scheme</string>
 </resources>
