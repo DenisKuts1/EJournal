@@ -3,6 +3,13 @@ package com.chnu.ejournal
 import android.app.Application
 import android.preference.PreferenceManager
 
+/**
+ * Object, used to store system information, such as:
+ *     - Night mode
+ *     - Language
+ *     - Notifications status
+ */
+
 class App : Application() {
 
     companion object {

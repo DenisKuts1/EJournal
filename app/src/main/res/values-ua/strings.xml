@@ -20,4 +20,47 @@
     <string name="enable_dark_color_scheme">Увімкнути темну колірну схему</string>
     <string name="disable_dark_color_scheme">Вимкнути темну колірну схему</string>
 
+
+    <string name="sunday">Неділя</string>
+    <string name="monday">Понеділок</string>
+    <string name="tuesday">Вівторок</string>
+    <string name="wednesday">Середа</string>
+    <string name="thursday">Четвер</string>
+    <string name="friday">П\'ятниця</string>
+    <string name="saturday">Субота</string>
+
+    <string name="sunday_short">Нд</string>
+    <string name="monday_short">Пн</string>
+    <string name="tuesday_short">Вт</string>
+    <string name="wednesday_short">Ср</string>
+    <string name="thursday_short">Чт</string>
+    <string name="friday_short">Пт</string>
+    <string name="saturday_short">Сб</string>
+
+    <string name="january">Січень</string>
+    <string name="february">Лютий</string>
+    <string name="march">Березень</string>
+    <string name="april">Квітень</string>
+    <string name="may">Травень</string>
+    <string name="june">Червень</string>
+    <string name="july">Липень</string>
+    <string name="august">Серпень</string>
+    <string name="september">Вересень</string>
+    <string name="october">Жовтень</string>
+    <string name="november">Листопад</string>
+    <string name="december">Грудень</string>
+
+    <string name="january_short">Січ</string>
+    <string name="february_short">Лют</string>
+    <string name="march_short">Бер</string>
+    <string name="april_short">Кві</string>
+    <string name="may_short">Тра</string>
+    <string name="june_short">Чер</string>
+    <string name="july_short">Лип</string>
+    <string name="august_short">Сер</string>
+    <string name="september_short">Вер</string>
+    <string name="october_short">Жов</string>
+    <string name="november_short">Лис</string>
+    <string name="december_short">Гру</string>
+
 </resources>

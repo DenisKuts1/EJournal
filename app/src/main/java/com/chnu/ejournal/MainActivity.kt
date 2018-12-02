@@ -1,22 +1,22 @@
 package com.chnu.ejournal
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.os.Looper
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
-import android.util.Log
 import android.view.View
-import android.widget.Toast
+import com.chnu.ejournal.fragments.schedule.ScheduleFragment
+import com.chnu.ejournal.fragments.settings.SettingsFragment
+import com.chnu.ejournal.fragments.subject.SubjectsFragment
+import com.chnu.ejournal.retrofit.MyRetrofitApi
+import com.chnu.ejournal.retrofit.TestResponse
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Response
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -58,8 +58,12 @@ class MainActivity : AppCompatActivity() {
         false
     }
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Setting up night mode
         if (App.instance.isNightModeEnabled) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
@@ -69,8 +73,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         setContentView(R.layout.activity_main)
+
         first_button.setOnClickListener {
             Observable.create<String> {
                 subscriber ->
@@ -96,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         second_button.setOnClickListener {
-           Observable.create<String> {
+            Observable.create<String> {
                 subscriber ->
                 var response: Response<TestResponse>?
                 try {
@@ -118,7 +122,7 @@ class MainActivity : AppCompatActivity() {
                             }
                     )
         }
-        //Toast.makeText(this, "${intent.getStringExtra("email")}: ${intent.getStringExtra("token")}", Toast.LENGTH_SHORT).show()
+
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
     }

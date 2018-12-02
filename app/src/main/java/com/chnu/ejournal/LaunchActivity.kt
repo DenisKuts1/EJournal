@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatDelegate
 import android.util.Log
 import android.view.View
 import android.view.Window
+import com.chnu.ejournal.retrofit.MyRetrofitApi
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -23,6 +24,8 @@ class LaunchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+
+        //Setting up language
         val locale = Locale(App.instance.language)
         val config = baseContext.resources.configuration
         config.setLocale(locale)
@@ -31,6 +34,7 @@ class LaunchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
 
+        // Setting up night mode
         if (App.instance.isNotificationsEnabled) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
@@ -39,7 +43,7 @@ class LaunchActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_launch)
 
-
+        // Managing authentication into google account
         val account = GoogleSignIn.getLastSignedInAccount(this)
         if(account != null) {
             beginWork(account.email!!, account.idToken!!)
@@ -65,12 +69,18 @@ class LaunchActivity : AppCompatActivity() {
     }
 
     fun beginWork(email: String, status: String){
-
-        /*Observable.create<String> {
+        //Auth on server
+        Observable.create<String> {
             subscriber ->
             try {
+                MyRetrofitApi.init(this)
                 val response = MyRetrofitApi.auth(status)
                 if(response.isSuccessful){
+                    response.headers().names().forEach {
+                        println("$it: ${response.headers().get(it)}")
+
+                    }
+                    println(response.body()!!.email)
                     val intent = Intent(this, MainActivity::class.java)
                     intent.putExtra("email", "qwe")
                     intent.putExtra("token", status)
@@ -92,12 +102,12 @@ class LaunchActivity : AppCompatActivity() {
                 { e ->
 
                 }
-        )*/
+        )
 
-
-        val intent = Intent(this, MainActivity::class.java)
+        // For testing without server only
+        /*val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("email", email)
         intent.putExtra("token", status)
-        startActivity(intent)
+        startActivity(intent)*/
     }
 }

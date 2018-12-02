@@ -3,18 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubjectsFragment">
+    tools:context=".fragments.subject.SubjectsFragment">
 
     <android.support.v7.widget.Toolbar
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:id="@+id/settings_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/title_subject"
+            android:textColor="?iconColor"
+            android:textSize="24sp" />
 
     </android.support.v7.widget.Toolbar>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/subjects_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/title_subject" />
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+    </android.support.v7.widget.RecyclerView>
 
 </FrameLayout>

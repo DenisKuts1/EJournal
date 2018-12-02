@@ -14,6 +14,11 @@
     <color name="launch_welcome_text">#eac0af</color>
     <color name="launch_sign_in">#a7a7a7</color>
 
+    <color name="schedule_day_disabled">#454545</color>
+    <color name="schedule_day_enabled">#fdd4b6</color>
+    <color name="schedule_day_text_disabled">#bbbbbb</color>
+    <color name="schedule_day_text_enabled">#b38470</color>
+
 
 
 
