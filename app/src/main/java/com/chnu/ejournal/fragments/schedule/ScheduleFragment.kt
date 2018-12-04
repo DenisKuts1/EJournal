@@ -24,7 +24,11 @@ import android.support.v7.widget.LinearSmoothScroller
 import android.support.v4.os.HandlerCompat.postDelayed
 import android.support.v4.widget.NestedScrollView
 import android.util.TypedValue
+import android.view.animation.Animation
+import android.widget.LinearLayout
 import android.widget.TextView
+import com.chnu.ejournal.fragments.schedule.subjects.ScheduleHeader
+import com.chnu.ejournal.fragments.schedule.subjects.ScheduleItemType
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -49,6 +53,8 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
     private val appBarLayout by lazy { mainView.findViewById<AppBarLayout>(R.id.schedule_app_bar_layout) }
     private lateinit var mainView: View
     private lateinit var navigationView: BottomNavigationView
+    private lateinit var dayText: TextView
+    private lateinit var dateText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,18 +73,16 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         appBarLayout.addOnOffsetChangedListener(this)
         appBarLayout.isClickable = true
 
-        val dayText = mainView.findViewById<TextView>(R.id.schedule_day_text)
-        val dateText = mainView.findViewById<TextView>(R.id.schedule_date_text)
+        dayText = mainView.findViewById(R.id.schedule_day_text)
+        dateText = mainView.findViewById(R.id.schedule_date_text)
 
         val calendar = Calendar.getInstance()
         calendar.time = Date()
         dayText.text = resources.getStringArray(R.array.days_of_week)[calendar.get(Calendar.DAY_OF_WEEK) - 1]
-        dateText.text = resources.getStringArray(R.array.months)[calendar.get(Calendar.MONTH) - 1] + " " + calendar.get(Calendar.DAY_OF_MONTH)
+        dateText.text = resources.getStringArray(R.array.months)[calendar.get(Calendar.MONTH)] + " " + calendar.get(Calendar.DAY_OF_MONTH)
 
         initSubjectsList()
         initDaysList()
-
-        scrollToPosition(1)
 
 
         return mainView
@@ -91,10 +95,10 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         val daysList = mainView.findViewById<RecyclerView>(R.id.schedule_days_list_view)
 
         val items = arrayListOf(Date(2018, 11, 1),
-                Date(2018, 11, 2),
-                Date(2018, 11, 3),
-                Date(2018, 11, 4),
-                Date(2018, 11, 5))
+                Date(118, 11, 2),
+                Date(118, 11, 3),
+                Date(118, 11, 4),
+                Date(118, 11, 5))
 
 
         val adapter = ScheduleDaysAdapter { date ->
@@ -108,7 +112,7 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         daysList.layoutManager = manager
     }
 
-    fun scrollToPosition(position: Int){
+    fun scrollToPosition(position: Int) {
         val smoothScroller = object : LinearSmoothScroller(context) {
             override fun getVerticalSnapPreference(): Int {
                 return LinearSmoothScroller.SNAP_TO_START
@@ -121,16 +125,17 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
     fun initSubjectsList() {
         scheduleList = mainView.findViewById(R.id.schedule_view)
 
-        val items = arrayListOf(Subject("Python programing", "242/1 group", Date(2018, 11, 1, 9, 40), 1),
-                Subject("Cryptography", "341/2 group", Date(2018, 11, 1, 13, 0), 1),
-                Subject("Cryptography", "341/2 group", Date(2018, 11, 2, 8, 20), 1),
-                Subject("Computer architecture", "143/2 group", Date(2018, 11, 2, 9, 50), 1),
-                Subject("Cryptography", "341/2 group", Date(2018, 11, 3, 8, 20), 1),
-                Subject("Computer architecture", "143/2 group", Date(2018, 11, 3, 9, 50), 1),
-                Subject("Computer architecture", "143/2 group", Date(2018, 11, 4, 8, 20), 1),
-                Subject("Computer architecture", "143/2 group", Date(2018, 11, 4, 9, 50), 1),
-                Subject("Computer architecture", "143/2 group", Date(2018, 11, 5, 8, 20), 1),
-                Subject("Computer architecture", "143/2 group", Date(2018, 11, 5, 9, 50), 1))
+        val items = arrayListOf(
+                Subject("Python programing", "242/1 group", Date(118, 11, 1, 9, 40), 1),
+                Subject("Cryptography", "341/2 group", Date(118, 11, 1, 13, 0), 1),
+                Subject("Cryptography", "341/2 group", Date(118, 11, 2, 8, 20), 1),
+                Subject("Computer architecture", "143/2 group", Date(118, 11, 2, 9, 50), 1),
+                Subject("Cryptography", "341/2 group", Date(118, 11, 3, 8, 20), 1),
+                Subject("Computer architecture", "143/2 group", Date(118, 11, 3, 9, 50), 1),
+                Subject("Computer architecture", "143/2 group", Date(118, 11, 4, 8, 20), 1),
+                Subject("Computer architecture", "143/2 group", Date(118, 11, 4, 9, 50), 1),
+                Subject("Computer architecture", "143/2 group", Date(118, 11, 5, 8, 20), 1),
+                Subject("Computer architecture", "143/2 group", Date(118, 11, 5, 9, 50), 1))
         scheduleAdapter = ScheduleAdapter(context!!)
         val manager = LinearLayoutManager(context!!)
         scheduleAdapter.setItems(items)
@@ -139,8 +144,57 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         scheduleAdapter.setListener { position ->
 
         }
+
+        scheduleList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val currentFirstVisible = (scheduleList.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+                if (currentFirstVisible != lastFirstVisible) {
+                    if (dy > 0) {
+                        val lastVisibleItem = scheduleAdapter.getItem(lastFirstVisible)
+                        if (lastVisibleItem is ScheduleHeader) {
+                            val newTitleDay = resources.getStringArray(R.array.days_of_week)[lastVisibleItem.calendar.get(Calendar.DAY_OF_WEEK) - 1]
+                            val newTitleDate = resources.getStringArray(R.array.months)[lastVisibleItem.calendar.get(Calendar.MONTH)] + " " + lastVisibleItem.calendar.get(Calendar.DAY_OF_MONTH)
+                            textAnimation(newTitleDay, newTitleDate)
+                        }
+                    } else {
+                        if (currentFirstVisible != 0) {
+                            val currentVisibleItem = scheduleAdapter.getItem(currentFirstVisible - 1)
+                            if (currentVisibleItem is ScheduleHeader) {
+                                val calendar = Calendar.getInstance()
+                                calendar.time = currentVisibleItem.calendar.time
+                                calendar.add(Calendar.DAY_OF_MONTH, -1)
+                                val newTitleDay = resources.getStringArray(R.array.days_of_week)[calendar.get(Calendar.DAY_OF_WEEK) - 1]
+                                val newTitleDate = resources.getStringArray(R.array.months)[calendar.get(Calendar.MONTH)] + " " + calendar.get(Calendar.DAY_OF_MONTH)
+                                textAnimation(newTitleDay, newTitleDate)
+                            }
+                        }
+                    }
+                    lastFirstVisible = currentFirstVisible
+                }
+            }
+        })
     }
 
+    val title_container: LinearLayout by lazy { mainView.findViewById<LinearLayout>(R.id.schedule_title) }
+
+    fun textAnimation(newTitleDay: String, newTitleDate: String) {
+        val animation = AlphaAnimation(1f, 0f)
+        animation.duration = 200
+        animation.repeatCount = 1
+        animation.repeatMode = Animation.REVERSE
+        animation.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationEnd(animation: Animation?) {}
+            override fun onAnimationStart(animation: Animation?) {}
+            override fun onAnimationRepeat(animation: Animation?) {
+                dayText.text = newTitleDay
+                dateText.text = newTitleDate
+            }
+        })
+        title_container.findViewById<LinearLayout>(R.id.schedule_title).startAnimation(animation)
+    }
+
+    var lastFirstVisible = 0
 
     companion object {
 

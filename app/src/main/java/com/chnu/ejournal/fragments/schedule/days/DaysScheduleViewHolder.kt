@@ -43,7 +43,7 @@ class DaysScheduleViewHolder(itemView: View, val context: Context, val listener:
         button.textOn = dayShort
         button.text = dayShort
         button.refreshDrawableState()
-        val monthShort = context.resources.getStringArray(R.array.months_short)[calendar[Calendar.MONTH] - 1]
+        val monthShort = context.resources.getStringArray(R.array.months_short)[calendar[Calendar.MONTH]]
         val dayOfMonth = calendar[Calendar.DAY_OF_MONTH]
         textField.text = context.resources.getString(R.string.schedule_day_list_text, monthShort, dayOfMonth)
     }

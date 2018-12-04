@@ -15,7 +15,7 @@ interface ScheduleItem {
     val type: ScheduleItemType
 }
 
-class ScheduleHeader(private val date: Date) : ScheduleItem {
+class ScheduleHeader(date: Date) : ScheduleItem {
     override val type = ScheduleItemType.HEADER
     val calendar = Calendar.getInstance()
 
@@ -32,15 +32,15 @@ class ScheduleHeader(private val date: Date) : ScheduleItem {
     }
 
     fun getDate(context: Context): String {
-
+        //val year = calendar.get(Calendar.YEAR)
         val dayNumber = calendar.get(Calendar.DAY_OF_WEEK)
         val day = context.resources.getStringArray(R.array.days_of_week)[dayNumber - 1]
 
         val monthNumber = calendar.get(Calendar.MONTH)
-        val month = context.resources.getStringArray(R.array.months)[monthNumber - 1]
+        val month = context.resources.getStringArray(R.array.months)[monthNumber]
 
         val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
-
+        //println("$year:$monthNumber:$dayOfMonth ($dayNumber) - $month:$day")
         return if(dayOfMonth > 9) "$day, $month $dayOfMonth" else "$day, $month 0$dayOfMonth"
     }
 }

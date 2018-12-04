@@ -32,7 +32,7 @@
 
 
     </android.support.design.widget.AppBarLayout>
-    -->
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/schedule_view"
@@ -61,6 +61,7 @@
             android:src="@drawable/ic_man" />
 
         <LinearLayout
+            android:id="@+id/schedule_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
