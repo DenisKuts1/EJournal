@@ -3,6 +3,7 @@ package com.chnu.ejournal.fragments.schedule
 import android.os.Bundle
 import android.os.Handler
 import android.support.design.widget.AppBarLayout
+import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -47,6 +48,7 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
     private val mTitleContainer by lazy { mainView.findViewById<RelativeLayout>(R.id.schedule_title_container) }
     private val appBarLayout by lazy { mainView.findViewById<AppBarLayout>(R.id.schedule_app_bar_layout) }
     private lateinit var mainView: View
+    private lateinit var navigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +61,8 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         mainView = inflater.inflate(R.layout.fragment_schedule, container, false)
+        navigationView = activity!!.findViewById(R.id.navigation)
+        //println(navigationView.y)
 
         appBarLayout.addOnOffsetChangedListener(this)
         appBarLayout.isClickable = true
@@ -74,7 +78,7 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         initSubjectsList()
         initDaysList()
 
-
+        scrollToPosition(1)
 
 
         return mainView
@@ -83,7 +87,7 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
     lateinit var scheduleAdapter: ScheduleAdapter
     lateinit var scheduleList: RecyclerView
 
-    fun initDaysList(){
+    fun initDaysList() {
         val daysList = mainView.findViewById<RecyclerView>(R.id.schedule_days_list_view)
 
         val items = arrayListOf(Date(2018, 11, 1),
@@ -95,14 +99,7 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
 
         val adapter = ScheduleDaysAdapter { date ->
             val position = scheduleAdapter.getPosition(date)
-            println(position)
-            val smoothScroller = object : LinearSmoothScroller(context) {
-                override fun getVerticalSnapPreference(): Int {
-                    return LinearSmoothScroller.SNAP_TO_START
-                }
-            }
-            smoothScroller.targetPosition = position
-            (scheduleList.layoutManager as LinearLayoutManager).startSmoothScroll(smoothScroller)
+            scrollToPosition(position)
 
         }
         val manager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -111,8 +108,18 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         daysList.layoutManager = manager
     }
 
+    fun scrollToPosition(position: Int){
+        val smoothScroller = object : LinearSmoothScroller(context) {
+            override fun getVerticalSnapPreference(): Int {
+                return LinearSmoothScroller.SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = position
+        (scheduleList.layoutManager as LinearLayoutManager).startSmoothScroll(smoothScroller)
+    }
+
     fun initSubjectsList() {
-        scheduleList = mainView.findViewById<RecyclerView>(R.id.schedule_view)
+        scheduleList = mainView.findViewById(R.id.schedule_view)
 
         val items = arrayListOf(Subject("Python programing", "242/1 group", Date(2018, 11, 1, 9, 40), 1),
                 Subject("Cryptography", "341/2 group", Date(2018, 11, 1, 13, 0), 1),
@@ -132,8 +139,6 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         scheduleAdapter.setListener { position ->
 
         }
-
-
     }
 
 
@@ -149,12 +154,12 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
                 ScheduleFragment().apply {
                     arguments = Bundle().apply {
                         putString(ARG_PARAM1, email)
-
                     }
                 }
     }
 
     override fun onOffsetChanged(appBarLayout: AppBarLayout, offset: Int) {
+        //println(navigationView.y)
         val maxScroll = appBarLayout.totalScrollRange
         val percentage = Math.abs(offset) / maxScroll.toFloat()
         handleAlphaOnTitle(percentage)
@@ -170,24 +175,10 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
                 dip,
                 r.displayMetrics
         )
-        scheduleList.setPaddingRelative(scheduleList.paddingStart, (px * percentage).toInt(), scheduleList.paddingEnd, scheduleList.paddingBottom)
-        /*if (percentage >= PERCENTAGE_TO_HIDE_TITLE_DETAILS) {
-            if (mIsTheTitleContainerVisible) {
-                startAlphaAnimation(mTitleContainer, ALPHA_ANIMATIONS_DURATION.toLong(), View.INVISIBLE)
-                mIsTheTitleContainerVisible = false
-            }
-
-        } else {
-
-            if (!mIsTheTitleContainerVisible) {
-                startAlphaAnimation(mTitleContainer, ALPHA_ANIMATIONS_DURATION.toLong(), View.VISIBLE)
-                mIsTheTitleContainerVisible = true
-            }
-        }*/
+        scheduleList.setPaddingRelative(0, (px * percentage).toInt(), 0, 0)
     }
 
     fun setAlpha(view: View, percentage: Float) {
-
         view.alpha = percentage
         if (view is ViewGroup) {
             for (i in 0 until view.childCount) {

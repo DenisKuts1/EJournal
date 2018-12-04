@@ -70,7 +70,7 @@ class LaunchActivity : AppCompatActivity() {
 
     fun beginWork(email: String, status: String){
         //Auth on server
-        Observable.create<String> {
+        /*Observable.create<String> {
             subscriber ->
             try {
                 MyRetrofitApi.init(this)
@@ -102,12 +102,12 @@ class LaunchActivity : AppCompatActivity() {
                 { e ->
 
                 }
-        )
+        )*/
 
         // For testing without server only
-        /*val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("email", email)
         intent.putExtra("token", status)
-        startActivity(intent)*/
+        startActivity(intent)
     }
 }

@@ -21,43 +21,58 @@ import rx.schedulers.Schedulers
 class MainActivity : AppCompatActivity() {
 
     private var current: Fragment? = null
-    private val settingsFragment by lazy { SettingsFragment.newInstance(intent.getStringExtra("email")) }
-    private val subjectsFragment by lazy { SubjectsFragment.newInstance(intent.getStringExtra("email")) }
-    private val scheduleFragment by lazy { ScheduleFragment.newInstance(intent.getStringExtra("email")) }
+    private val settingsFragment = SettingsFragment()
+    private val subjectsFragment = SubjectsFragment()
+    private val scheduleFragment = ScheduleFragment()
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        val transaction = supportFragmentManager.beginTransaction()
+
         when (item.itemId) {
             R.id.navigation_schedule -> {
-                val transaction = supportFragmentManager.beginTransaction()
-                if(current != null){
-                    transaction.remove(current!!)
+                if (current !is ScheduleFragment) {
+                    if (current != null) {
+                        transaction.hide(current!!)
+                    }
+                    if (scheduleFragment.isAdded) {
+                        transaction.show(scheduleFragment)
+                    } else {
+                        transaction.add(R.id.main_layout_place_holder, scheduleFragment)
+                    }
                 }
-                transaction.add(R.id.main_container, scheduleFragment).commit()
                 current = scheduleFragment
-                return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_subject -> {
-                val transaction = supportFragmentManager.beginTransaction()
-                if(current != null){
-                    transaction.remove(current!!)
+                if (current !is SubjectsFragment) {
+                    if (current != null) {
+                        transaction.hide(current!!)
+                    }
+                    if (subjectsFragment.isAdded) {
+                        transaction.show(subjectsFragment)
+                    } else {
+                        transaction.add(R.id.main_layout_place_holder, subjectsFragment)
+                    }
                 }
-                transaction.add(R.id.main_container, subjectsFragment).commit()
                 current = subjectsFragment
-                return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_settings -> {
-                val transaction = supportFragmentManager.beginTransaction()
-                if(current != null){
-                    transaction.remove(current!!)
+                if (current !is SettingsFragment) {
+                    if (current != null) {
+                        transaction.hide(current!!)
+                    }
+                    if (settingsFragment.isAdded) {
+                        transaction.show(settingsFragment)
+                    } else {
+                        transaction.add(R.id.main_layout_place_holder, settingsFragment)
+                    }
                 }
-                transaction.add(R.id.main_container, settingsFragment).commit()
                 current = settingsFragment
-                return@OnNavigationItemSelectedListener true
             }
         }
-        false
+        transaction.commit()
+        navigation.refreshDrawableState()
+        true
     }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,14 +83,14 @@ class MainActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             }
         }
 
         setContentView(R.layout.activity_main)
 
-        first_button.setOnClickListener {
+        /*first_button.setOnClickListener {
             Observable.create<String> {
                 subscriber ->
                 var response: Response<TestResponse>?
@@ -121,9 +136,10 @@ class MainActivity : AppCompatActivity() {
 
                             }
                     )
-        }
+        }*/
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        navigation.selectedItemId = R.id.navigation_schedule
 
     }
 }
