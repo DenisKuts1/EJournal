@@ -6,7 +6,7 @@
     <color name="iconColor">#686868</color>
 
     <color name="colorTextPrimary"> #000000</color>
-    <color name="colorTextSecondary"> #858585</color>
+    <color name="colorTextSecondary">#858585</color>
 
 
     <color name="launch_image_background">#fcd3b6</color>
@@ -19,8 +19,7 @@
     <color name="schedule_day_enabled">#fcd5b4</color>
     <color name="schedule_day_text_disabled">#9f9f9f</color>
     <color name="schedule_day_text_enabled">#b88a73</color>
-
-
+    <color name="schedule_header_item">#ededed</color>
 
 
 </resources>

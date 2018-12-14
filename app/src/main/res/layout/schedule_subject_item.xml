@@ -3,46 +3,52 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:layout_marginStart="8dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="16dp"
     android:layout_marginTop="8dp"
-    android:background="@drawable/schedule_subject_item_shape">
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/schedule_subject_item_shape"
+    android:elevation="3dp">
+
     <com.chnu.ejournal.CorneredImageView
-        android:adjustViewBounds="true"
         android:id="@+id/schedule_subject_item_image"
-        android:scaleType="centerCrop"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+
     <LinearLayout
-        android:paddingStart="16dp"
-        android:paddingTop="16dp"
         android:id="@+id/schedule_subject_text_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp">
+
         <TextView
             android:id="@+id/schedule_subject_name"
-            android:textColor="#ffffff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp" />
-        <TextView
-            android:paddingTop="8dp"
             android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+        <TextView
             android:id="@+id/schedule_subject_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"/>
+            android:paddingTop="8dp"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
     </LinearLayout>
+
     <TextView
-        android:paddingTop="16dp"
-        android:paddingEnd="16dp"
-        android:textColor="#ffffff"
-        android:layout_alignParentEnd="true"
         android:id="@+id/schedule_subject_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_gravity="end"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="#ffffff"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 </RelativeLayout>

@@ -20,6 +20,7 @@
     </style>
 
     <style name="ActivityTheme.Primary.Base.ForNavView" parent="ActivityTheme.Primary.Base">
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="ActivityThemeLight" parent="ActivityTheme.Primary.Base">
