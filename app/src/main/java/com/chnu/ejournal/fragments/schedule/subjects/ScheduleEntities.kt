@@ -77,6 +77,10 @@ class ScheduleSubject(private val subject: Subject, val context: Context) : Sche
             3-> context.resources.getDrawable(R.drawable.subject3)
             4-> context.resources.getDrawable(R.drawable.subject4)
             5-> context.resources.getDrawable(R.drawable.subject5)
+            6-> context.resources.getDrawable(R.drawable.arch)
+            7-> context.resources.getDrawable(R.drawable.arch2)
+            8-> context.resources.getDrawable(R.drawable.crypto)
+
             else-> context.resources.getDrawable(R.drawable.subject0)
 
         }
