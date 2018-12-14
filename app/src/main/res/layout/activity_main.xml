@@ -55,6 +55,7 @@
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
+        android:theme="@style/ActivityTheme.Primary.Base.ForNavView"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_alignParentBottom="true"

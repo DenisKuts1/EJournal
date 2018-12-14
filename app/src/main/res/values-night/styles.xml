@@ -19,6 +19,9 @@
         <item name="android:statusBarColor">@color/colorBackground</item>
     </style>
 
+    <style name="ActivityTheme.Primary.Base.ForNavView" parent="ActivityTheme.Primary.Base">
+    </style>
+
     <style name="ActivityThemeLight" parent="ActivityTheme.Primary.Base">
         <item name="android:windowBackground">@color/colorBackground</item>
     </style>
