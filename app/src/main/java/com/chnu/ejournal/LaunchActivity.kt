@@ -32,6 +32,7 @@ class LaunchActivity : AppCompatActivity() {
         baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
 
         super.onCreate(savedInstanceState)
+        window.statusBarColor = resources.getColor(R.color.launch_status_bar);
         requestWindowFeature(Window.FEATURE_NO_TITLE)
 
         // Setting up night mode
