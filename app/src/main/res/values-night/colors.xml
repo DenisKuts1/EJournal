@@ -2,10 +2,11 @@
 <resources>
     <color name="colorPrimary">#fad5b8</color>
     <color name="colorPrimaryDark">#e6b388</color>
-    <color name="colorBackground">#303030</color>
-    <color name="iconColor">#ffffff</color>
+    <color name="colorBackground">#202125</color>
+    <!--<color name="colorBackground">#303030</color>-->
+    <color name="iconColor">#d1d1d1</color>
 
-    <color name="colorTextPrimary"> #ffffff</color>
+    <color name="colorTextPrimary"> #d1d1d1</color>
     <color name="colorTextSecondary"> #858585</color>
 
     <color name="launch_image_background">#fcd3b6</color>
@@ -18,7 +19,8 @@
     <color name="schedule_day_enabled">#fdd4b6</color>
     <color name="schedule_day_text_disabled">#bbbbbb</color>
     <color name="schedule_day_text_enabled">#b38470</color>
-    <color name="schedule_header_item">#383838</color>
+    <color name="schedule_header_item">#34363c</color>
+    <!--<color name="schedule_header_item">#383838</color>-->
 
 
 
