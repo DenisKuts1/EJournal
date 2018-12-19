@@ -126,13 +126,13 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         scheduleList = mainView.findViewById(R.id.schedule_view)
 
         val items = arrayListOf(
-                Subject("Python programing", "242/1 group", Date(118, 11, 1, 9, 40), 8),
-                Subject("Cryptography", "341/2 group", Date(118, 11, 1, 13, 0), 8),
-                Subject("Cryptography", "341/2 group", Date(118, 11, 2, 8, 20), 8),
-                Subject("Computer architecture", "143/2 group", Date(118, 11, 2, 9, 50), 8),
-                Subject("Cryptography", "341/2 group", Date(118, 11, 3, 8, 20), 8),
-                Subject("Computer architecture", "143/2 group", Date(118, 11, 3, 9, 50), 8),
-                Subject("Computer architecture", "143/2 group", Date(118, 11, 4, 8, 20), 8),
+                Subject("Networking", "242/1 group", Date(118, 11, 1, 9, 40), 14),
+                Subject("Math analysis", "341/2 group", Date(118, 11, 1, 13, 0), 11),
+                Subject("Cryptography", "341/2 group", Date(118, 11, 1, 8, 20), 8),
+                Subject("Coding with Mironiv", "143/2 group", Date(118, 11, 1, 9, 50), 10),
+                Subject("Computer architecture", "143/2 group", Date(118, 11, 3, 9, 50), 9),
+                Subject("Quality assurance", "341/2 group", Date(118, 11, 2, 8, 20), 13),
+                Subject("Computer architecture", "143/2 group", Date(118, 11, 3, 8, 20), 8),
                 Subject("Computer architecture", "143/2 group", Date(118, 11, 4, 9, 50), 8),
                 Subject("Computer architecture", "143/2 group", Date(118, 11, 5, 8, 20), 8),
                 Subject("Computer architecture", "143/2 group", Date(118, 11, 5, 9, 50), 8))

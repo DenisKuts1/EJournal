@@ -80,6 +80,12 @@ class ScheduleSubject(private val subject: Subject, val context: Context) : Sche
             6-> context.resources.getDrawable(R.drawable.arch)
             7-> context.resources.getDrawable(R.drawable.arch2)
             8-> context.resources.getDrawable(R.drawable.crypto)
+            9-> context.resources.getDrawable(R.drawable.arch4)
+            10-> context.resources.getDrawable(R.drawable.code)
+            11-> context.resources.getDrawable(R.drawable.math2)
+            12-> context.resources.getDrawable(R.drawable.net)
+            13-> context.resources.getDrawable(R.drawable.qc)
+            14-> context.resources.getDrawable(R.drawable.net2)
 
             else-> context.resources.getDrawable(R.drawable.subject0)
 
