@@ -83,8 +83,6 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
 
         initSubjectsList()
         initDaysList()
-
-
         return mainView
     }
 
@@ -229,7 +227,7 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
                 dip,
                 r.displayMetrics
         )
-        scheduleList.setPaddingRelative(0, (px * percentage).toInt(), 0, 0)
+        scheduleList.setPaddingRelative(0, (px * percentage).toInt(), 0, px.toInt())
     }
 
     fun setAlpha(view: View, percentage: Float) {
