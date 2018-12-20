@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingTop="16dp"
@@ -7,14 +8,15 @@
     android:paddingStart="10dp"
     android:paddingEnd="10dp"
     android:orientation="vertical">
+
     <ToggleButton
         android:id="@+id/schedule_days_toggle_button"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@drawable/schedule_toolbar_buttons_shape"
-        android:textSize="18sp"
+        android:textAllCaps="false"
         android:textColor="@color/schedule_day_text_disabled"
-        android:textAllCaps="false"/>
+        android:textSize="18sp" />
     <TextView
         android:id="@+id/schedule_days_text_field"
         android:layout_width="wrap_content"

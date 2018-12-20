@@ -4,10 +4,12 @@
     <item android:state_checked="true">
         <shape android:shape="oval">
             <solid android:color="@color/schedule_day_enabled" />
+            <!--<solid android:color="@color/schedule_day_enabled" />-->
         </shape>
     </item>
     <item>
         <shape android:shape="oval">
+            <!--<solid android:color="#439f80" />-->
             <solid android:color="@color/schedule_day_disabled" />
         </shape>
     </item>

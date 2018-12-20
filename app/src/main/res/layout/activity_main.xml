@@ -56,12 +56,15 @@
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="?android:attr/windowBackground"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorBackground"
         android:elevation="2dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:theme="@style/ActivityTheme.Primary.Base.ForNavView"
         app:itemIconTint="@color/bottom_nav_icon_color"
         app:itemTextColor="@color/bottom_nav_icon_color"
-        app:menu="@menu/navigation"
-        android:layout_alignParentBottom="true"/>
+        app:menu="@menu/navigation" />
 
 </RelativeLayout>
