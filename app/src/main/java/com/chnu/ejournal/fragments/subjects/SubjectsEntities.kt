@@ -1,4 +1,4 @@
-package com.chnu.ejournal.fragments.subject
+package com.chnu.ejournal.fragments.subjects
 
 enum class SubjectsItemType {
     HEADER,

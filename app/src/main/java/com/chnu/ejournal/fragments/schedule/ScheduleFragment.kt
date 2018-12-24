@@ -18,8 +18,6 @@ import android.view.animation.AlphaAnimation
 import android.widget.RelativeLayout
 import android.widget.ToggleButton
 import com.chnu.ejournal.fragments.schedule.days.ScheduleDaysAdapter
-import com.chnu.ejournal.fragments.schedule.subjects.ScheduleAdapter
-import com.chnu.ejournal.fragments.schedule.subjects.ScrollLinearLayoutManager
 import android.support.v7.widget.LinearSmoothScroller
 import android.support.v4.os.HandlerCompat.postDelayed
 import android.support.v4.widget.NestedScrollView
@@ -27,8 +25,8 @@ import android.util.TypedValue
 import android.view.animation.Animation
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.chnu.ejournal.fragments.schedule.subjects.ScheduleHeader
-import com.chnu.ejournal.fragments.schedule.subjects.ScheduleItemType
+import com.chnu.ejournal.fragments.AppFragmentManager
+import com.chnu.ejournal.fragments.schedule.subjects.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -55,6 +53,7 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
     private lateinit var navigationView: BottomNavigationView
     private lateinit var dayText: TextView
     private lateinit var dateText: TextView
+    lateinit var appFragmentManager: AppFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,23 +123,24 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         scheduleList = mainView.findViewById(R.id.schedule_view)
 
         val items = arrayListOf(
-                Subject("Networking", "242/1 group", Date(118, 11, 1, 9, 40), 14),
-                Subject("Math analysis", "341/2 group", Date(118, 11, 1, 13, 0), 11),
-                Subject("Cryptography", "341/2 group", Date(118, 11, 1, 8, 20), 8),
-                Subject("Coding with Mironiv", "143/2 group", Date(118, 11, 1, 9, 50), 10),
-                Subject("Computer architecture", "143/2 group", Date(118, 11, 3, 9, 50), 9),
-                Subject("Quality assurance", "341/2 group", Date(118, 11, 2, 8, 20), 13),
-                Subject("Computer architecture", "143/2 group", Date(118, 11, 3, 8, 20), 8),
-                Subject("Computer architecture", "143/2 group", Date(118, 11, 4, 9, 50), 8),
-                Subject("Computer architecture", "143/2 group", Date(118, 11, 5, 8, 20), 8),
-                Subject("Computer architecture", "143/2 group", Date(118, 11, 5, 9, 50), 8))
+                Subject(context!!,"Networking", "242/1 group", Date(118, 11, 1, 9, 40), 14),
+                Subject(context!!, "Math analysis", "341/2 group", Date(118, 11, 1, 13, 0), 11),
+                Subject(context!!, "Cryptography", "341/2 group", Date(118, 11, 1, 8, 20), 8),
+                Subject(context!!, "Coding with Mironiv", "143/2 group", Date(118, 11, 1, 9, 50), 10),
+                Subject(context!!, "Computer architecture", "143/2 group", Date(118, 11, 3, 9, 50), 9),
+                Subject(context!!, "Quality assurance", "341/2 group", Date(118, 11, 2, 8, 20), 13),
+                Subject(context!!, "Computer architecture", "143/2 group", Date(118, 11, 3, 8, 20), 8),
+                Subject(context!!, "Computer architecture", "143/2 group", Date(118, 11, 4, 9, 50), 8),
+                Subject(context!!, "Computer architecture", "143/2 group", Date(118, 11, 5, 8, 20), 8),
+                Subject(context!!, "Computer architecture", "143/2 group", Date(118, 11, 5, 9, 50), 8))
         scheduleAdapter = ScheduleAdapter(context!!)
         val manager = LinearLayoutManager(context)
         scheduleAdapter.setItems(items)
         scheduleList.adapter = scheduleAdapter
         scheduleList.layoutManager = manager
         scheduleAdapter.setListener { position ->
-            println(position)
+            appFragmentManager.openSubjectFragment((scheduleAdapter.getItem(position) as ScheduleSubject).subject)
+            println((scheduleAdapter.getItem(position) as ScheduleSubject).subject.name)
         }
 
         scheduleList.addOnScrollListener(object : RecyclerView.OnScrollListener() {

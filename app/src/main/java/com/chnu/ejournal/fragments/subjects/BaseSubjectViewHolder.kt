@@ -1,10 +1,9 @@
-package com.chnu.ejournal.fragments.subject
+package com.chnu.ejournal.fragments.subjects
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
 import com.chnu.ejournal.R
-import com.chnu.ejournal.fragments.schedule.subjects.ScheduleItem
 
 abstract class BaseSubjectViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     abstract fun bindItem(item: SubjectsItem)

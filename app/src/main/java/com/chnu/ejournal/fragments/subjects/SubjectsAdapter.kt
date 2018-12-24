@@ -1,14 +1,10 @@
-package com.chnu.ejournal.fragments.subject
+package com.chnu.ejournal.fragments.subjects
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.chnu.ejournal.R
 import com.chnu.ejournal.Subject
-import com.chnu.ejournal.fragments.schedule.subjects.BaseScheduleViewHolder
-import com.chnu.ejournal.fragments.schedule.subjects.ScheduleHeaderViewHolder
-import com.chnu.ejournal.fragments.schedule.subjects.ScheduleItemType
-import com.chnu.ejournal.fragments.schedule.subjects.ScheduleItemViewHolder
 import java.lang.RuntimeException
 
 class SubjectsAdapter : RecyclerView.Adapter<BaseSubjectViewHolder>() {

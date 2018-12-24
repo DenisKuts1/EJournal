@@ -7,69 +7,29 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import android.view.View
+import com.chnu.ejournal.fragments.AppFragmentManager
 import com.chnu.ejournal.fragments.schedule.ScheduleFragment
 import com.chnu.ejournal.fragments.settings.SettingsFragment
-import com.chnu.ejournal.fragments.subject.SubjectsFragment
-import com.chnu.ejournal.retrofit.MyRetrofitApi
-import com.chnu.ejournal.retrofit.TestResponse
+import com.chnu.ejournal.fragments.subjects.SubjectsFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Response
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 
 class MainActivity : AppCompatActivity() {
 
-    private var current: Fragment? = null
-    private val settingsFragment = SettingsFragment()
-    private val subjectsFragment = SubjectsFragment()
-    private val scheduleFragment = ScheduleFragment()
+        val appFragmentManager = AppFragmentManager()
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        val transaction = supportFragmentManager.beginTransaction()
-
         when (item.itemId) {
             R.id.navigation_schedule -> {
-                if (current !is ScheduleFragment) {
-                    if (current != null) {
-                        transaction.hide(current!!)
-                    }
-                    if (scheduleFragment.isAdded) {
-                        transaction.show(scheduleFragment)
-                    } else {
-                        transaction.add(R.id.main_layout_place_holder, scheduleFragment)
-                    }
-                }
-                current = scheduleFragment
+                appFragmentManager.openScheduleFragment()
             }
             R.id.navigation_subject -> {
-                if (current !is SubjectsFragment) {
-                    if (current != null) {
-                        transaction.hide(current!!)
-                    }
-                    if (subjectsFragment.isAdded) {
-                        transaction.show(subjectsFragment)
-                    } else {
-                        transaction.add(R.id.main_layout_place_holder, subjectsFragment)
-                    }
-                }
-                current = subjectsFragment
+                appFragmentManager.openSubjectListFragment()
             }
             R.id.navigation_settings -> {
-                if (current !is SettingsFragment) {
-                    if (current != null) {
-                        transaction.hide(current!!)
-                    }
-                    if (settingsFragment.isAdded) {
-                        transaction.show(settingsFragment)
-                    } else {
-                        transaction.add(R.id.main_layout_place_holder, settingsFragment)
-                    }
-                }
-                current = settingsFragment
+                appFragmentManager.openSettingsFragment()
             }
         }
-        transaction.commit()
+
         navigation.refreshDrawableState()
         true
     }
@@ -89,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_main)
+        appFragmentManager.manager = supportFragmentManager
 
         /*first_button.setOnClickListener {
             Observable.create<String> {
