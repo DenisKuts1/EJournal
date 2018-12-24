@@ -135,7 +135,7 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
                 Subject("Computer architecture", "143/2 group", Date(118, 11, 5, 8, 20), 8),
                 Subject("Computer architecture", "143/2 group", Date(118, 11, 5, 9, 50), 8))
         scheduleAdapter = ScheduleAdapter(context!!)
-        val manager = LinearLayoutManager(context!!)
+        val manager = LinearLayoutManager(context)
         scheduleAdapter.setItems(items)
         scheduleList.adapter = scheduleAdapter
         scheduleList.layoutManager = manager

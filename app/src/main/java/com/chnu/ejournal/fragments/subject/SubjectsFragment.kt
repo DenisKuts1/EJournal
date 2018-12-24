@@ -2,10 +2,14 @@ package com.chnu.ejournal.fragments.subject
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chnu.ejournal.R
+import com.chnu.ejournal.Subject
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,8 +40,28 @@ class SubjectsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_subjects, container, false)
+        val view =  inflater.inflate(R.layout.fragment_subjects, container, false)
+
+        val subjectList = view.findViewById<RecyclerView>(R.id.subjects_recycler_view)
+        val adapter = SubjectsAdapter()
+        val items = arrayListOf(
+                Subject("Networking", "242/1 group", Date(118, 11, 1, 9, 40), 14),
+                Subject("Math analysis", "341/2 group", Date(118, 11, 1, 13, 0), 11),
+                Subject("Cryptography", "341/2 group", Date(118, 11, 1, 8, 20), 8),
+                Subject("Coding with Mironiv", "143/2 group", Date(118, 11, 1, 9, 50), 10),
+                Subject("Computer architecture", "143/2 group", Date(118, 11, 3, 9, 50), 9),
+                Subject("Quality assurance", "341/2 group", Date(118, 11, 2, 8, 20), 13),
+                Subject("Computer architecture", "143/2 group", Date(118, 11, 3, 8, 20), 8),
+                Subject("Computer architecture", "143/2 group", Date(118, 11, 4, 9, 50), 8),
+                Subject("Computer architecture", "143/2 group", Date(118, 11, 5, 8, 20), 8),
+                Subject("Computer architecture", "143/2 group", Date(118, 11, 5, 9, 50), 8))
+
+        adapter.setItems(items)
+        val manager = LinearLayoutManager(context)
+        subjectList.layoutManager = manager
+        subjectList.adapter = adapter
+
+        return view
     }
 
 

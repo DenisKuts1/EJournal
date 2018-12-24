@@ -48,14 +48,14 @@ class ScheduleAdapter(val context: Context) : RecyclerView.Adapter<BaseScheduleV
     fun getItem(position: Int) = items[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseScheduleViewHolder {
-        when(viewType){
+        return when(viewType){
             ScheduleItemType.HEADER.ordinal -> {
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.schedule_header_item, parent, false)
-                return ScheduleHeaderViewHolder(view, parent.context)
+                ScheduleHeaderViewHolder(view, parent.context)
             }
             ScheduleItemType.ITEM.ordinal -> {
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.schedule_subject_item, parent, false)
-                return ScheduleItemViewHolder(view, parent.context, listener)
+                ScheduleItemViewHolder(view, parent.context, listener)
             }
             else -> throw RuntimeException("Unknown type")
         }

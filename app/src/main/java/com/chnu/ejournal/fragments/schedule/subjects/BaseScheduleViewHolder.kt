@@ -6,3 +6,4 @@ import android.view.View
 abstract class BaseScheduleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     abstract fun bindItem(item: ScheduleItem)
 }
+
