@@ -24,6 +24,7 @@
     <color name="subject_header_item">#6d513b</color>
     <color name="subject_item_text">#6d513b</color>
     <color name="subject_item_background">#fad5b8</color>
+    <color name="sign_in_button_shape_background">#ffffff</color>
 
 
 </resources>

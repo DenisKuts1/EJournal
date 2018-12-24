@@ -5,7 +5,7 @@
     <string name="chnu">ЧНУ</string>
     <string name="launch_welcome_text">Welcome to CHNU Journal</string>
     <string name="launch_sign_in">Sign in to view your schedule, track marks progress and make reports</string>
-    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign_in_button_text">Sign in with Google</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_schedule">Schedule</string>
     <string name="title_subject">Subject</string>
@@ -70,4 +70,5 @@
     <string name="december_short">Dec</string>
 
     <string name="schedule_day_list_text">%1$s. %2$d</string>
+
 </resources>

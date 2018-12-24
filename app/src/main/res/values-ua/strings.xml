@@ -4,7 +4,7 @@
     <string name="chnu">ЧНУ</string>
     <string name="launch_welcome_text">Вітаємо в CHNU Journal</string>
     <string name="launch_sign_in">Увійдіть, щоб переглядати свій розклад, відслідковувати оцінки і створювати звіти</string>
-    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign_in_button_text">Вхід через Google</string>
     <string name="title_schedule">Розклад</string>
     <string name="title_subject">Предмети</string>
     <string name="title_settings">Налаштування</string>
@@ -62,5 +62,6 @@
     <string name="october_short">Жов</string>
     <string name="november_short">Лис</string>
     <string name="december_short">Гру</string>
+
 
 </resources>
