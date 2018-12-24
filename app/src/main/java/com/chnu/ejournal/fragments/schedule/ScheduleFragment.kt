@@ -220,7 +220,7 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
     private fun handleAlphaOnTitle(percentage: Float) {
         setAlpha(mTitleContainer, percentage)
         setAlpha(appBarLayout, 1 - percentage)
-        val dip = 64f
+        val dip = 56f
         val r = resources
         val px = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
