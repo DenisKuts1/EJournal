@@ -40,7 +40,7 @@ class SubjectsAdapter : RecyclerView.Adapter<BaseSubjectViewHolder>() {
                 HeaderSubjectsViewHolder(view)
             }
             SubjectsItemType.ITEM.ordinal -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.subject_header_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.subject_item, parent, false)
                 ItemSubjectsViewHolder(view)
             }
             else -> throw RuntimeException("Unknown type")
@@ -52,4 +52,6 @@ class SubjectsAdapter : RecyclerView.Adapter<BaseSubjectViewHolder>() {
     override fun onBindViewHolder(holder: BaseSubjectViewHolder, position: Int) {
         holder.bindItem(items[position])
     }
+
+    override fun getItemViewType(position: Int) = items[position].type.ordinal
 }

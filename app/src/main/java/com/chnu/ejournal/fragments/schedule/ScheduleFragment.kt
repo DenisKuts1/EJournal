@@ -140,7 +140,7 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         scheduleList.adapter = scheduleAdapter
         scheduleList.layoutManager = manager
         scheduleAdapter.setListener { position ->
-
+            println(position)
         }
 
         scheduleList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
