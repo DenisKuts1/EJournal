@@ -4,8 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingStart="32dp"
-    android:paddingEnd="32dp"
     android:paddingTop="8dp"
-    android:paddingBottom="8dp">
+    android:paddingEnd="32dp"
+    android:paddingBottom="8dp"
+    android:textColor="@color/subject_header_item"
+    android:textSize="20sp">
 
 </TextView>

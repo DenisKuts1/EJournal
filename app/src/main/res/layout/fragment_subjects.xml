@@ -31,7 +31,8 @@
             android:id="@+id/subjects_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:paddingBottom="56dp">
 
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>

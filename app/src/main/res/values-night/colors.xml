@@ -22,6 +22,10 @@
     <color name="schedule_header_item">#34363c</color>
     <!--<color name="schedule_header_item">#383838</color>-->
 
+    <color name="subject_header_item">#d1d1d1</color>
+
+    <color name="subject_item_text">#ffffff</color>
+    <color name="subject_item_background">#34363c</color>
 
 
 

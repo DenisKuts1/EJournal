@@ -5,7 +5,7 @@
     <color name="colorBackground">#ffffff</color>
     <color name="iconColor">#717171</color>
 
-    <color name="colorTextPrimary"> #000000</color>
+    <color name="colorTextPrimary">#000000</color>
     <color name="colorTextSecondary">#858585</color>
 
 
@@ -20,5 +20,10 @@
     <color name="schedule_day_text_disabled">#9f9f9f</color>
     <color name="schedule_day_text_enabled">#b88a73</color>
     <color name="schedule_header_item">#ededed</color>
+
+    <color name="subject_header_item">#6d513b</color>
+    <color name="subject_item_text">#6d513b</color>
+    <color name="subject_item_background">#fad5b8</color>
+
 
 </resources>
