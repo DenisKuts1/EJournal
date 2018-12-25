@@ -7,6 +7,8 @@
 
     <color name="colorTextPrimary">#000000</color>
     <color name="colorTextSecondary">#858585</color>
+    <color name="colorTextForVlad">#1d1d1d</color>
+
 
 
     <color name="launch_image_background">#fcd3b6</color>
@@ -25,6 +27,8 @@
     <color name="subject_item_text">#6d513b</color>
     <color name="subject_item_background">#fad5b8</color>
     <color name="sign_in_button_shape_background">#ffffff</color>
+    <color name="student_marks_background">#efefef</color>
+
 
 
 </resources>

@@ -1,5 +1,6 @@
 package com.chnu.ejournal.fragments.subject
 
+import android.content.res.ColorStateList
 import android.graphics.Point
 import android.graphics.Rect
 import android.os.Bundle
@@ -84,14 +85,14 @@ class SubjectFragment: Fragment() {
 
         val size = Point()
         activity!!.windowManager.defaultDisplay.getSize(size)
-        val adapter = StudentsAdapter(subject.getPrimaryImageColor(), subject.getSecondaryImageColor(), size.x)
+        val adapter = StudentsAdapter(subject.getPrimaryImageColor(), size.x)
         adapter.setItems(students)
         studentRecyclerView.adapter = adapter
 
         val fab = view.findViewById<FloatingActionButton>(R.id.subject_report_fab)
 
 
-        fab.setBackgroundColor(subject.getPrimaryImageColor())
+        fab.backgroundTintList = ColorStateList.valueOf(subject.getPrimaryImageColor())
 
         val coordinatorLayout =  view.findViewById<CoordinatorLayout>(R.id.subject_root_layout)
         coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor())

@@ -7,7 +7,7 @@ import com.chnu.ejournal.R
 import com.chnu.ejournal.Student
 
 
-class StudentsAdapter(val progressBarColor: Int, val progressBarBackgroundColor: Int, val screenWidth: Int) : RecyclerView.Adapter<StudentViewHolder>()  {
+class StudentsAdapter(val progressBarColor: Int, val screenWidth: Int) : RecyclerView.Adapter<StudentViewHolder>()  {
 
     val items = ArrayList<Student>()
     fun setItems(students: ArrayList<Student>){
@@ -18,7 +18,7 @@ class StudentsAdapter(val progressBarColor: Int, val progressBarBackgroundColor:
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.student_item, parent, false)
-        return StudentViewHolder(view, progressBarColor, progressBarBackgroundColor, screenWidth)
+        return StudentViewHolder(view, progressBarColor, screenWidth)
     }
 
     override fun getItemCount() = items.size

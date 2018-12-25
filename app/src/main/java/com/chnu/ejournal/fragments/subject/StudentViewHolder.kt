@@ -13,7 +13,7 @@ import com.chnu.ejournal.R
 import com.chnu.ejournal.Student
 import com.chnu.ejournal.fragments.subjects.SubjectsItem
 
-class StudentViewHolder(itemView: View, val progressBarColor: Int, val progressBarBackgroundColor: Int, val screenWidth: Int): RecyclerView.ViewHolder(itemView) {
+class StudentViewHolder(itemView: View, val progressBarColor: Int, val screenWidth: Int): RecyclerView.ViewHolder(itemView) {
     val nameField = itemView.findViewById<TextView>(R.id.student_item_student_name)
     val poitsField = itemView.findViewById<TextView>(R.id.student_item_points)
     val progressBarLeft = itemView.findViewById<View>(R.id.student_item_progress_line)
@@ -23,7 +23,6 @@ class StudentViewHolder(itemView: View, val progressBarColor: Int, val progressB
         nameField.text = item.name
         poitsField.text = item.points.toString()
         progressBarLeft.setBackgroundColor(progressBarColor)
-        progressBarRight.setBackgroundColor(progressBarBackgroundColor)
         progressBarLeft.layoutParams.width = (screenWidth / 100.0 * item.points).toInt()
         progressBarRight.layoutParams.width = (screenWidth / 100.0 * (100 - item.points)).toInt()
     }
