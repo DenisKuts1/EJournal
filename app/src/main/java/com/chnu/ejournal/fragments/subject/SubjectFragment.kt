@@ -1,6 +1,7 @@
 package com.chnu.ejournal.fragments.subject
 
 import android.graphics.Point
+import android.graphics.Rect
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.CollapsingToolbarLayout
@@ -10,6 +11,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.widget.ImageView
@@ -79,6 +81,7 @@ class SubjectFragment: Fragment() {
 
         studentRecyclerView = view.findViewById(R.id.subject_students_list)
         studentRecyclerView.layoutManager = LinearLayoutManager(context)
+
         val size = Point()
         activity!!.windowManager.defaultDisplay.getSize(size)
         val adapter = StudentsAdapter(subject.getPrimaryImageColor(), subject.getSecondaryImageColor(), size.x)
@@ -86,10 +89,12 @@ class SubjectFragment: Fragment() {
         studentRecyclerView.adapter = adapter
 
         val fab = view.findViewById<FloatingActionButton>(R.id.subject_report_fab)
-        val coordinatorLayout =  view.findViewById<CoordinatorLayout>(R.id.subject_root_layout)
-        coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor())
+
 
         fab.setBackgroundColor(subject.getPrimaryImageColor())
+
+        val coordinatorLayout =  view.findViewById<CoordinatorLayout>(R.id.subject_root_layout)
+        coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor())
 
         return view
     }

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.drawable.ShapeDrawable
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.ProgressBar
@@ -23,8 +24,8 @@ class StudentViewHolder(itemView: View, val progressBarColor: Int, val progressB
         poitsField.text = item.points.toString()
         progressBarLeft.setBackgroundColor(progressBarColor)
         progressBarRight.setBackgroundColor(progressBarBackgroundColor)
-        progressBarLeft.layoutParams.width = screenWidth / 100 * item.points
-        progressBarRight.layoutParams.width = screenWidth / 100 * (100 - item.points)
+        progressBarLeft.layoutParams.width = (screenWidth / 100.0 * item.points).toInt()
+        progressBarRight.layoutParams.width = (screenWidth / 100.0 * (100 - item.points)).toInt()
     }
 }
 
