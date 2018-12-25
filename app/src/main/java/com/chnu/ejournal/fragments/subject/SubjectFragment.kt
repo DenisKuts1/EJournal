@@ -23,7 +23,9 @@ class SubjectFragment: Fragment() {
     private lateinit var toolbar: Toolbar
     lateinit var collapsingToolbarLayout: CollapsingToolbarLayout
     lateinit var studentRecyclerView: RecyclerView
-
+    lateinit var adapter: StudentsAdapter
+    lateinit var image: ImageView
+    lateinit var groupText: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_subject, container, false)
@@ -43,10 +45,10 @@ class SubjectFragment: Fragment() {
         collapsingToolbarLayout.setContentScrimColor(subject.getPrimaryImageColor())
 
 
-        val groupText = view.findViewById<TextView>(R.id.subject_appbar_group_text)
+        groupText = view.findViewById<TextView>(R.id.subject_appbar_group_text)
         groupText.text = "${group.number} group 45%"
 
-        val image = view.findViewById<ImageView>(R.id.subject_appbar_image)
+        image = view.findViewById<ImageView>(R.id.subject_appbar_image)
         image.setImageDrawable(subject.getImage())
         //val title = view.findViewById<TextView>(R.id.subject_toolbar_title)
         //title.text = subject.name
@@ -68,7 +70,7 @@ class SubjectFragment: Fragment() {
         studentRecyclerView.layoutManager = LinearLayoutManager(context)
         val size = Point()
         activity!!.windowManager.defaultDisplay.getSize(size)
-        val adapter = StudentsAdapter(subject.getPrimaryImageColor(), subject.getSecondaryImageColor(), size.x)
+        adapter = StudentsAdapter(subject.getPrimaryImageColor(), subject.getSecondaryImageColor(), size.x)
         adapter.setItems(students)
         studentRecyclerView.adapter = adapter
 
@@ -76,6 +78,13 @@ class SubjectFragment: Fragment() {
         fab.setBackgroundColor(subject.getPrimaryImageColor())
 
         return view
+    }
+
+    fun updateSubject(newSubject: Subject){
+        subject = newSubject
+        image.setImageDrawable(subject.getImage())
+        groupText.text = "${group.number} group 45%"
+        toolbar.title = subject.name
     }
 
 
