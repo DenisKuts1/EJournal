@@ -30,8 +30,6 @@
     <style name="LanguageSettingsDialog" parent="Theme.AppCompat.DayNight.Dialog">
         <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
-
-
     </style>
 
 </resources>

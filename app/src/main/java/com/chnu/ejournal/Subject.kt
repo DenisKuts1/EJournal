@@ -13,25 +13,23 @@ import java.util.*
  */
 data class Subject(val context: Context, val name: String, val group: String, val time: Date, val image: Int) {
     fun getImage(): Drawable {
-        return when(image){
-            0-> context.resources.getDrawable(R.drawable.subject0)
-            1-> context.resources.getDrawable(R.drawable.subject1)
-            2-> context.resources.getDrawable(R.drawable.subject2)
-            3-> context.resources.getDrawable(R.drawable.subject3)
-            4-> context.resources.getDrawable(R.drawable.subject4)
-            5-> context.resources.getDrawable(R.drawable.subject5)
-            6-> context.resources.getDrawable(R.drawable.arch)
-            7-> context.resources.getDrawable(R.drawable.arch2)
-            8-> context.resources.getDrawable(R.drawable.crypto)
-            9-> context.resources.getDrawable(R.drawable.arch4)
-            10-> context.resources.getDrawable(R.drawable.code)
-            11-> context.resources.getDrawable(R.drawable.math2)
-            12-> context.resources.getDrawable(R.drawable.net)
-            13-> context.resources.getDrawable(R.drawable.qc)
-            14-> context.resources.getDrawable(R.drawable.net2)
+        val array = context.resources.obtainTypedArray(R.array.subject_images)
+        val drawable = array.getDrawable(image)
+        array.recycle()
+        return drawable!!
+    }
 
-            else-> context.resources.getDrawable(R.drawable.subject0)
+    fun getPrimaryImageColor(): Int{
+        val array = context.resources.obtainTypedArray(R.array.primary_image_colors)
+        val drawable = array.getColor(image, -1)
+        array.recycle()
+        return drawable
+    }
 
-        }
+    fun getSecondaryImageColor(): Int{
+        val array = context.resources.obtainTypedArray(R.array.primary_image_colors)
+        val drawable = array.getColor(image, -1)
+        array.recycle()
+        return drawable
     }
 }
