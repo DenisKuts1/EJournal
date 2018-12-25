@@ -25,11 +25,16 @@
     </style>
 
 
-
     <style name="ActivityThemeLight" parent="ActivityTheme.Primary.Base">
         <item name="android:windowBackground">@color/colorBackground</item>
     </style>
 
     <style name="LanguageSettingsDialog" parent="Theme.AppCompat.Light.Dialog" />
+    <style name="ExpandableTitleSubject">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+    <style name="CollapsedTitleSubject">
+        <item name="android:textColor">#ffffff</item>
+    </style>
 
 </resources>

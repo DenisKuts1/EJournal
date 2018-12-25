@@ -55,4 +55,57 @@
         <item>@string/november_short</item>
         <item>@string/december_short</item>
     </array>
+
+    <integer-array name="subject_images">
+        <item>@drawable/subject0</item>
+        <item>@drawable/subject1</item>
+        <item>@drawable/subject2</item>
+        <item>@drawable/subject3</item>
+        <item>@drawable/subject4</item>
+        <item>@drawable/subject5</item>
+        <item>@drawable/arch</item>
+        <item>@drawable/arch2</item>
+        <item>@drawable/crypto</item>
+        <item>@drawable/arch4</item>
+        <item>@drawable/code</item>
+        <item>@drawable/math2</item>
+        <item>@drawable/net</item>
+        <item>@drawable/qc</item>
+        <item>@drawable/net2</item>
+    </integer-array>
+
+    <array name="primary_image_colors">
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+    </array>
+    <array name="secondary_image_colors">
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+    </array>
 </resources>
