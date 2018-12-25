@@ -4,6 +4,7 @@ import android.graphics.Point
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.CollapsingToolbarLayout
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -70,6 +71,9 @@ class SubjectFragment: Fragment() {
         val adapter = StudentsAdapter(subject.getPrimaryImageColor(), subject.getSecondaryImageColor(), size.x)
         adapter.setItems(students)
         studentRecyclerView.adapter = adapter
+
+        val fab = view.findViewById<FloatingActionButton>(R.id.subject_report_fab)
+        fab.setBackgroundColor(subject.getPrimaryImageColor())
 
         return view
     }

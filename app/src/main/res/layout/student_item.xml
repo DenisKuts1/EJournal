@@ -43,4 +43,5 @@
             android:layout_height="2dp"
             android:background="@color/colorPrimary" />
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
