@@ -27,7 +27,7 @@ data class Subject(val context: Context, val name: String, val group: String, va
     }
 
     fun getSecondaryImageColor(): Int{
-        val array = context.resources.obtainTypedArray(R.array.primary_image_colors)
+        val array = context.resources.obtainTypedArray(R.array.secondary_image_colors)
         val drawable = array.getColor(image, -1)
         array.recycle()
         return drawable

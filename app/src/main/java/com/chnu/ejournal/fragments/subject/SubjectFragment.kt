@@ -1,18 +1,18 @@
 package com.chnu.ejournal.fragments.subject
 
+import android.graphics.Point
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.util.TypedValue
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
-import com.chnu.ejournal.Group
-import com.chnu.ejournal.MainActivity
-import com.chnu.ejournal.R
-import com.chnu.ejournal.Subject
+import com.chnu.ejournal.*
 
 class SubjectFragment: Fragment() {
 
@@ -21,6 +21,7 @@ class SubjectFragment: Fragment() {
     private lateinit var appBarLayout: AppBarLayout
     private lateinit var toolbar: Toolbar
     lateinit var collapsingToolbarLayout: CollapsingToolbarLayout
+    lateinit var studentRecyclerView: RecyclerView
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -48,6 +49,28 @@ class SubjectFragment: Fragment() {
         image.setImageDrawable(subject.getImage())
         //val title = view.findViewById<TextView>(R.id.subject_toolbar_title)
         //title.text = subject.name
+
+        val students = arrayListOf(Student("Куц Денис", group, 2, 100),
+                Student("Ніколаєвич Владислав", group, 2, 95),
+                Student("Чижевський Василь", group, 2, 90),
+                Student("Великий Князь Архо Владислав", group, 2, 0),
+                Student("Гаврилиця Федір", group, 2, 85),
+                Student("Лабінськой Віктор", group, 2, 70),
+                Student("Лисенко Юлія", group, 2, 70),
+                Student("Лазоряк Олександр", group, 2, 90),
+                Student("Твардовський Роман", group, 2, 80),
+                Student("Слободяник Олексій", group, 2, 50),
+                Student("Бахір Антоніна", group, 2, 50)
+                )
+
+        studentRecyclerView = view.findViewById(R.id.subject_students_list)
+        studentRecyclerView.layoutManager = LinearLayoutManager(context)
+        val size = Point()
+        activity!!.windowManager.defaultDisplay.getSize(size)
+        val adapter = StudentsAdapter(subject.getPrimaryImageColor(), subject.getSecondaryImageColor(), size.x)
+        adapter.setItems(students)
+        studentRecyclerView.adapter = adapter
+
         return view
     }
 

@@ -92,20 +92,20 @@
         <item>@color/colorPrimary</item>
     </array>
     <array name="secondary_image_colors">
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
-        <item>@color/colorPrimaryDark</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
+        <item>@color/colorTextSecondary</item>
     </array>
 </resources>
