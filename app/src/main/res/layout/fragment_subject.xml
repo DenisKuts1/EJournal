@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/subject_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -9,7 +10,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/subject_appbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="150dp"
         android:background="#333333"
         android:fitsSystemWindows="true">
 
@@ -18,33 +19,37 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:collapsedTitleTextAppearance="@style/CollapsedTitleSubject"
             app:contentScrim="#333333"
-            app:collapsedTitleTextAppearance="@style/ExpandableTitleSubject"
-            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginBottom="48dp"
             app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginBottom="64dp"
-            app:expandedTitleTextAppearance="@style/ExpandableTitleSubject">
+            app:expandedTitleMarginStart="16dp"
+            app:expandedTitleTextAppearance="@style/ExpandableTitleSubject"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_collapseMode="parallax">
+
                 <ImageView
                     android:id="@+id/subject_appbar_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop">
-                </ImageView>
+                    android:scaleType="centerCrop"></ImageView>
+
                 <TextView
                     android:id="@+id/subject_appbar_group_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_light"
                     android:text="WERTYerw"
-                    android:textSize="20sp"
                     android:textColor="#FFFFFF"
-                    android:layout_marginStart="48dp"
-                    android:layout_gravity="bottom"/>
+                    android:textSize="20sp" />
             </FrameLayout>
 
 
@@ -54,30 +59,31 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_filter_list_white_24dp"
                     android:layout_gravity="end"
-                    />
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/ic_filter_list_white_24dp" />
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
-
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/subject_students_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/very_good_design"
         android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/subject_report_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_filter_list_white_24dp"
-        android:layout_gravity="bottom|end"/>
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_filter_list_white_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>
