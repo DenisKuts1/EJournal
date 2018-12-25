@@ -63,5 +63,7 @@
     <string name="november_short">Лис</string>
     <string name="december_short">Гру</string>
 
+    <string name="points"> бал.</string>
+
 
 </resources>

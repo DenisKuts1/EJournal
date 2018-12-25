@@ -62,7 +62,19 @@ class SubjectFragment: Fragment() {
                 Student("Лазоряк Олександр", group, 2, 90),
                 Student("Твардовський Роман", group, 2, 80),
                 Student("Слободяник Олексій", group, 2, 50),
-                Student("Бахір Антоніна", group, 2, 50)
+                Student("Бахір Антоніна", group, 2, 50),
+
+                        Student("Куц Денис", group, 2, 100),
+        Student("Ніколаєвич Владислав", group, 2, 95),
+        Student("Чижевський Василь", group, 2, 90),
+        Student("Великий Князь Архо Владислав", group, 2, 0),
+        Student("Гаврилиця Федір", group, 2, 85),
+        Student("Лабінськой Віктор", group, 2, 70),
+        Student("Лисенко Юлія", group, 2, 70),
+        Student("Лазоряк Олександр", group, 2, 90),
+        Student("Твардовський Роман", group, 2, 80),
+        Student("Слободяник Олексій", group, 2, 50),
+        Student("Бахір Антоніна", group, 2, 50)
                 )
 
         studentRecyclerView = view.findViewById(R.id.subject_students_list)
