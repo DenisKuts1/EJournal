@@ -7,7 +7,9 @@ import android.support.v4.app.FragmentManager
 import android.view.View
 import com.chnu.ejournal.R
 import com.chnu.ejournal.entities.LabCreator
+import com.chnu.ejournal.entities.Student
 import com.chnu.ejournal.entities.Subject
+import com.chnu.ejournal.fragments.labs.LabsFragment
 import com.chnu.ejournal.fragments.schedule.ScheduleFragment
 import com.chnu.ejournal.fragments.settings.SettingsFragment
 import com.chnu.ejournal.fragments.subject.SubjectFragment
@@ -23,13 +25,14 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context, val
     private val subjectsFragment = SubjectsFragment()
     private val scheduleFragment = ScheduleFragment()
     private val subjectFragment = SubjectFragment()
-
+    private val labsFragment = LabsFragment()
     init {
         subjectFragment.subject = LabCreator.subjects[0]
         scheduleFragment.appFragmentManager = this
-        navigation.visibility = View.GONE
+        subjectFragment.appFragmentManager = this
+        labsFragment.appFragmentManager = this
         manager.beginTransaction().add(R.id.main_layout_place_holder, subjectFragment).hide(subjectFragment).commit()
-        navigation.visibility = View.VISIBLE
+        manager.beginTransaction().add(R.id.main_layout_place_holder, labsFragment).hide(labsFragment).commit()
         manager.beginTransaction().add(R.id.main_layout_place_holder, settingsFragment).hide(settingsFragment).commit()
         manager.beginTransaction().add(R.id.main_layout_place_holder, subjectsFragment).hide(subjectsFragment).commit()
         manager.beginTransaction().add(R.id.main_layout_place_holder, scheduleFragment).commit()
@@ -44,6 +47,14 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context, val
         manager.beginTransaction().hide(current).show(subjectFragment).commit()
         previous = current
         current = subjectFragment
+    }
+
+    fun openLabFragment(student: Student,subject: Subject){
+        navigation.visibility = View.GONE
+        navigation.refreshDrawableState()
+        labsFragment.setUp(student, subject)
+        manager.beginTransaction().hide(current).show(labsFragment).commit()
+        current = labsFragment
     }
 
     fun openScheduleFragment(){
@@ -68,13 +79,20 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context, val
     }
 
     fun onBackPressed(): Boolean{
-        return if(current is SubjectFragment){
-            navigation.visibility = View.VISIBLE
-            manager.beginTransaction().hide(current).show(previous).commitAllowingStateLoss()
-            current = previous
-            false
-        } else {
-            true
+        return when(current){
+            is SubjectFragment -> {
+                navigation.visibility = View.VISIBLE
+                manager.beginTransaction().hide(current).show(previous).commitAllowingStateLoss()
+                current = previous
+                false
+            }
+            is LabsFragment -> {
+                manager.beginTransaction().hide(current).show(subjectFragment).commitAllowingStateLoss()
+                current = subjectFragment
+                false
+            }
+            else -> true
         }
+
     }
 }

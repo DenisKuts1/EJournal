@@ -18,6 +18,8 @@ import com.chnu.ejournal.*
 import com.chnu.ejournal.entities.Group
 import com.chnu.ejournal.entities.Student
 import com.chnu.ejournal.entities.Subject
+import com.chnu.ejournal.fragments.AppFragmentManager
+import com.chnu.ejournal.fragments.schedule.subjects.ScheduleSubject
 
 class SubjectFragment : Fragment() {
 
@@ -31,6 +33,7 @@ class SubjectFragment : Fragment() {
     lateinit var groupText: TextView
     lateinit var fab: FloatingActionButton
     lateinit var coordinatorLayout: CoordinatorLayout
+    lateinit var appFragmentManager: AppFragmentManager
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -52,6 +55,7 @@ class SubjectFragment : Fragment() {
 
         studentRecyclerView = view.findViewById(R.id.subject_students_list)
         studentRecyclerView.layoutManager = LinearLayoutManager(context)
+
 
         fab = view.findViewById(R.id.subject_report_fab)
         coordinatorLayout = view.findViewById(R.id.subject_root_layout)
@@ -89,6 +93,13 @@ class SubjectFragment : Fragment() {
         activity!!.windowManager.defaultDisplay.getSize(size)
         val adapter = StudentsAdapter(subject.getPrimaryImageColor(context!!))
         adapter.setUpItems(students, subject)
+
+        adapter.setListener {position ->
+            println(adapter.items[position].student.name)
+            appFragmentManager.openLabFragment(adapter.items[position].student, subject)
+
+        }
+
         studentRecyclerView.adapter = adapter
 
 

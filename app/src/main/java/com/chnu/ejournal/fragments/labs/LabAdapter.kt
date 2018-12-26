@@ -11,13 +11,22 @@ class LabAdapter(val shapeColor: Int) : RecyclerView.Adapter<LabViewHolder>() {
 
     val items = ArrayList<LabItem>()
 
-    fun setItems(student: Student, subject: Subject){
+    private lateinit var listener: (Int) -> Unit
 
+    fun setListener(listener: (Int) -> Unit) {
+        this.listener = listener
+    }
+
+    fun setItems(student: Student, subject: Subject){
+        subject.labs.forEach { lab ->
+            val point = lab.points[student]!!
+            items += LabItem(lab.name, lab.maxPoints, point)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): LabViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.student_item, parent, false)
-        return LabViewHolder(view, shapeColor)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.lab_item, parent, false)
+        return LabViewHolder(view, shapeColor, listener)
     }
 
     override fun getItemCount() = items.size
@@ -25,4 +34,6 @@ class LabAdapter(val shapeColor: Int) : RecyclerView.Adapter<LabViewHolder>() {
     override fun onBindViewHolder(holder: LabViewHolder, position: Int) {
         holder.bindItem(items[position])
     }
+
+
 }

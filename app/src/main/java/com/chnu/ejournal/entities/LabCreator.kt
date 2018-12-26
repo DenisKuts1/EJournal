@@ -21,7 +21,6 @@ object LabCreator {
         }
     }
 
-
     val defaultGroup1 = Group("543м").also {
         it.students.addAll(arrayListOf(Student("Куц Денис", 1),
                 Student("Ніколаєвич Владислав", 1),
