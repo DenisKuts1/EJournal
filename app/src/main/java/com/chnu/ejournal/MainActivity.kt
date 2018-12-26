@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-        val appFragmentManager = AppFragmentManager()
+    lateinit var appFragmentManager: AppFragmentManager
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_main)
-        appFragmentManager.manager = supportFragmentManager
-
+        appFragmentManager = AppFragmentManager(supportFragmentManager, baseContext)
+        appFragmentManager.navigation = navigation
         /*first_button.setOnClickListener {
             Observable.create<String> {
                 subscriber ->
