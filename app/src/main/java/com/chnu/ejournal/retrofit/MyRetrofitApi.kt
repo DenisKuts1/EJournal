@@ -32,6 +32,12 @@ object MyRetrofitApi {
 
     fun getGroup(groupId: Long) = api.getGroup(groupId).execute()
 
+    fun getStudentsOfGroup(groupId: Long) = api.getStudentsOfGroup(groupId).execute()
+
+    fun getLabsOfSubject(lessonId: Long) = api.getLabsOfSubject(lessonId).execute()
+
+    fun getPointOfStudent(studentId: Long, taskId: Long) = api.getPointOfStudent(studentId, taskId).execute()
+
     fun getWeekNumber() = api.getWeekNumber().execute()
 
     fun justGet() = api.justGet().execute()

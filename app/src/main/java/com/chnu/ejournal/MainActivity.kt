@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatDelegate
 import android.view.View
 import com.chnu.ejournal.entities.Group
 import com.chnu.ejournal.entities.LabCreator
+import com.chnu.ejournal.entities.Student
 import com.chnu.ejournal.fragments.AppFragmentManager
 import com.chnu.ejournal.fragments.schedule.ScheduleFragment
 import com.chnu.ejournal.fragments.settings.SettingsFragment
@@ -20,6 +21,7 @@ import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import java.lang.Exception
+import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
@@ -68,17 +70,36 @@ class MainActivity : AppCompatActivity() {
                 LabCreator.week = MyRetrofitApi.getWeekNumber().body()!!
                 val groupIds = ArrayList<Long>()
                 LabCreator.lessons.forEach { lesson ->
-                    if(!groupIds.contains(lesson.groupId)){
+
+                    if (!groupIds.contains(lesson.groupId)) {
                         groupIds += lesson.groupId
                     }
                 }
 
                 groupIds.forEach { id ->
                     val groupDto = MyRetrofitApi.getGroup(id).body()!!
-                    LabCreator.groups += Group(groupDto.id, groupDto.name)
+                    val students = MyRetrofitApi.getStudentsOfGroup(id).body()!!
+                    val group = Group(groupDto.id, groupDto.name)
+                    students.forEach { student ->
+                        group.students += Student(student.id, "${student.name} ${student.surname}", student.subGroup)
+                    }
+                    LabCreator.groups += group
                 }
                 LabCreator.lessons.forEach { lesson ->
-                    LabCreator.subjects += LabCreator.subjectFromLesson(lesson)
+                    val labs = MyRetrofitApi.getLabsOfSubject(lesson.lessonId).body()
+                    val subject = LabCreator.subjectFromLesson(lesson)
+                    subject.labs += labs!!
+
+                    subject.labs.forEach { lab ->
+                        lab.points = HashMap()
+                        subject.group.students.forEach { student ->
+                            val point = MyRetrofitApi.getPointOfStudent(student.id, lab.id).body()!!
+
+                            lab.points[student] = point.roundToInt()
+                        }
+                    }
+
+                    LabCreator.subjects += subject
                 }
 
 

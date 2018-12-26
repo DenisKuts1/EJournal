@@ -1,7 +1,9 @@
 package com.chnu.ejournal.retrofit
 
 import com.chnu.ejournal.entities.GroupDTO
+import com.chnu.ejournal.entities.Lab
 import com.chnu.ejournal.entities.LessonDTO
+import com.chnu.ejournal.entities.StudentDTO
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -22,6 +24,14 @@ interface RESTApi {
     @GET("/group/{groupId}")
     fun getGroup(@Path("groupId") groupId: Long): Call<GroupDTO>
 
+    @GET("/group/students/{id}")
+    fun getStudentsOfGroup(@Path("id") groupId: Long): Call<List<StudentDTO>>
+
+    @GET("lesson/tasks/{lessonId}")
+    fun getLabsOfSubject(@Path("lessonId") lessonId: Long): Call<Set<Lab>>
+
+    @GET("student/{studentId}/task/{taskId}")
+    fun getPointOfStudent(@Path("studentId") studentId: Long, @Path("taskId") taskId: Long): Call<Double>
 
     @GET("/just_get")
     fun justGet(): Call<TestResponse>

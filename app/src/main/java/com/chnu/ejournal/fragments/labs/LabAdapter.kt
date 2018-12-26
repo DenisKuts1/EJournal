@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import com.chnu.ejournal.R
 import com.chnu.ejournal.entities.Student
 import com.chnu.ejournal.entities.Subject
+import kotlin.math.roundToInt
 
 class LabAdapter(val shapeColor: Int) : RecyclerView.Adapter<LabViewHolder>() {
 
@@ -20,7 +21,7 @@ class LabAdapter(val shapeColor: Int) : RecyclerView.Adapter<LabViewHolder>() {
     fun setItems(student: Student, subject: Subject){
         subject.labs.forEach { lab ->
             val point = lab.points[student]!!
-            items += LabItem(lab.name, lab.maxPoints, point)
+            items += LabItem(lab.name, lab.maxMark.roundToInt(), point)
         }
     }
 

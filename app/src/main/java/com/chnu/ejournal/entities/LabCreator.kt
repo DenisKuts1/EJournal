@@ -1,6 +1,5 @@
 package com.chnu.ejournal.entities
 
-import com.chnu.ejournal.entities.Subject
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -42,7 +41,7 @@ object LabCreator {
 
     fun getGroupById(id: Long) = groups.first { it.id == id }
 
-    fun createLabsForSubject(subject: Subject) {
+    /*fun createLabsForSubject(subject: Subject) {
         subject.labs.clear()
         (1..10).forEach { i ->
             subject.labs += Lab("Lab$i", 5, LabType.LAB)
@@ -54,36 +53,10 @@ object LabCreator {
         val random = Random()
         subject.labs.forEach { lab ->
             subject.group.students.forEach { student ->
-                lab.points += Pair(student, random.nextInt(lab.maxPoints + 1))
+                lab.points += Pair(student, random.nextInt(lab.maxMark + 1))
             }
         }
-    }
-
-    val defaultGroup1 = Group(1L, "543м").also {
-        it.students.addAll(arrayListOf(Student("Куц Денис", 1),
-                Student("Ніколаєвич Владислав", 1),
-                Student("Чижевський Василь", 1),
-                Student("Великий Князь Архо Владислав", 2),
-                Student("Гаврилиця Федір", 1),
-                Student("Лабінськой Віктор", 1),
-                Student("Лисенко Юлія", 1),
-                Student("Лазоряк Олександр", 1),
-                Student("Твардовський Роман", 1),
-                Student("Слободяник Олексій", 1),
-                Student("Бахір Антоніна", 1),
-
-                Student("Куц Денис1", 2),
-                Student("Ніколаєвич Владислав1", 2),
-                Student("Чижевський Василь1", 2),
-                Student("Великий Князь Архо Владислав1", 2),
-                Student("Гаврилиця Федір1", 2),
-                Student("Лабінськой Віктор1", 2),
-                Student("Лисенко Юлія1", 2),
-                Student("Лазоряк Олександр1", 2),
-                Student("Твардовський Роман1", 2),
-                Student("Слободяник Олексій1", 2),
-                Student("Бахір Антоніна1", 2)))
-    }
+    }*/
 
     /*val subjects = arrayListOf(
             Subject("Networking", defaultGroup1, Date(118, 11, 1, 9, 40), 14, 1),

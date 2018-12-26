@@ -87,11 +87,23 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
     fun initDaysList() {
         val daysList = mainView.findViewById<RecyclerView>(R.id.schedule_days_list_view)
 
-        val items = arrayListOf(Date(2018, 11, 1),
-                Date(118, 11, 2),
-                Date(118, 11, 3),
-                Date(118, 11, 4),
-                Date(118, 11, 5))
+        LabCreator.subjects.sortBy { it }
+        val calendar = Calendar.getInstance()
+        calendar.time = LabCreator.subjects[0].time
+        val first = Date(calendar.time.time)
+        calendar.add(Calendar.DATE, 1)
+        val second = Date(calendar.time.time)
+        calendar.add(Calendar.DATE, 1)
+        val third = Date(calendar.time.time)
+        calendar.add(Calendar.DATE, 1)
+        val fourth = Date(calendar.time.time)
+        calendar.add(Calendar.DATE, 1)
+        val fifth = Date(calendar.time.time)
+        val items = arrayListOf(first,
+                second,
+                third,
+                fourth,
+                fifth)
 
 
         val adapter = ScheduleDaysAdapter { date ->

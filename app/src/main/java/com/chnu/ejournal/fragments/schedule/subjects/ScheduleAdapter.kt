@@ -22,7 +22,7 @@ class ScheduleAdapter(val context: Context) : RecyclerView.Adapter<BaseScheduleV
 
         if(subjects.isEmpty()) return
 
-        subjects.sortBy { subject -> subject.time }
+        subjects.sortBy { subject -> subject }
         var lastDay = Int.MAX_VALUE
         val calendar = Calendar.getInstance()
         subjects.forEach {subject ->
