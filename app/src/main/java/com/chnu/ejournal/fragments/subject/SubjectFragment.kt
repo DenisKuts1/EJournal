@@ -30,6 +30,9 @@ class SubjectFragment: Fragment() {
     lateinit var adapter: StudentsAdapter
     lateinit var image: ImageView
     lateinit var groupText: TextView
+    lateinit var fab:FloatingActionButton
+    lateinit var coordinatorLayout:CoordinatorLayout
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_subject, container, false)
@@ -42,20 +45,57 @@ class SubjectFragment: Fragment() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.setDisplayShowHomeEnabled(true)
 
-        group = Group("543м/1")
-        toolbar.title = subject.name
+
 
         collapsingToolbarLayout = view.findViewById(R.id.subject_collapsing_toolbar_layout)
-        collapsingToolbarLayout.setContentScrimColor(subject.getPrimaryImageColor())
 
 
         groupText = view.findViewById<TextView>(R.id.subject_appbar_group_text)
-        groupText.text = "${group.number} group 45%"
 
         image = view.findViewById<ImageView>(R.id.subject_appbar_image)
-        image.setImageDrawable(subject.getImage())
         //val title = view.findViewById<TextView>(R.id.subject_toolbar_title)
         //title.text = subject.name
+
+
+
+
+        studentRecyclerView = view.findViewById(R.id.subject_students_list)
+        studentRecyclerView.layoutManager = LinearLayoutManager(context)
+
+
+        fab = view.findViewById<FloatingActionButton>(R.id.subject_report_fab)
+        coordinatorLayout =  view.findViewById<CoordinatorLayout>(R.id.subject_root_layout)
+        appBarLayout.addOnOffsetChangedListener(object :AppBarLayout.OnOffsetChangedListener{
+            override fun onOffsetChanged(p0: AppBarLayout?, verticalOffset: Int) {
+                if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0)
+                {
+
+                    coordinatorLayout.setBackgroundColor(resources.getColor(R.color.colorBackground))
+
+                }
+                else
+                {
+                    if(subject!=null) {
+                        coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor())
+                    }
+                }
+            }
+        })
+
+        return view
+    }
+
+    fun updateSubject(newSubject: Subject){
+        group = Group("543м/1")
+        toolbar.title = subject.name
+        subject = newSubject
+        image.setImageDrawable(subject.getImage())
+        groupText.text = "${group.number} group 45%"
+        toolbar.title = subject.name
+        fab.backgroundTintList = ColorStateList.valueOf(subject.getPrimaryImageColor())
+        coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor())
+        collapsingToolbarLayout.setContentScrimColor(subject.getPrimaryImageColor())
+
 
         val students = arrayListOf(Student("Куц Денис", group, 2, 100),
                 Student("Ніколаєвич Владислав", group, 2, 95),
@@ -69,20 +109,18 @@ class SubjectFragment: Fragment() {
                 Student("Слободяник Олексій", group, 2, 50),
                 Student("Бахір Антоніна", group, 2, 50),
 
-                        Student("Куц Денис", group, 2, 100),
-        Student("Ніколаєвич Владислав", group, 2, 95),
-        Student("Чижевський Василь", group, 2, 90),
-        Student("Великий Князь Архо Владислав", group, 2, 0),
-        Student("Гаврилиця Федір", group, 2, 85),
-        Student("Лабінськой Віктор", group, 2, 70),
-        Student("Лисенко Юлія", group, 2, 70),
-        Student("Лазоряк Олександр", group, 2, 90),
-        Student("Твардовський Роман", group, 2, 80),
-        Student("Слободяник Олексій", group, 2, 50),
-        Student("Бахір Антоніна", group, 2, 50)
-                )
-
-        studentRecyclerView = view.findViewById(R.id.subject_students_list)
+                Student("Куц Денис", group, 2, 100),
+                Student("Ніколаєвич Владислав", group, 2, 95),
+                Student("Чижевський Василь", group, 2, 90),
+                Student("Великий Князь Архо Владислав", group, 2, 0),
+                Student("Гаврилиця Федір", group, 2, 85),
+                Student("Лабінськой Віктор", group, 2, 70),
+                Student("Лисенко Юлія", group, 2, 70),
+                Student("Лазоряк Олександр", group, 2, 90),
+                Student("Твардовський Роман", group, 2, 80),
+                Student("Слободяник Олексій", group, 2, 50),
+                Student("Бахір Антоніна", group, 2, 50)
+        )
         studentRecyclerView.layoutManager = LinearLayoutManager(context)
 
         val size = Point()
@@ -91,22 +129,6 @@ class SubjectFragment: Fragment() {
         adapter.setItems(students)
         studentRecyclerView.adapter = adapter
 
-        val fab = view.findViewById<FloatingActionButton>(R.id.subject_report_fab)
-
-
-        fab.backgroundTintList = ColorStateList.valueOf(subject.getPrimaryImageColor())
-
-        val coordinatorLayout =  view.findViewById<CoordinatorLayout>(R.id.subject_root_layout)
-        coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor())
-
-        return view
-    }
-
-    fun updateSubject(newSubject: Subject){
-        subject = newSubject
-        image.setImageDrawable(subject.getImage())
-        groupText.text = "${group.number} group 45%"
-        toolbar.title = subject.name
     }
 
 
