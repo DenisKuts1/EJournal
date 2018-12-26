@@ -103,4 +103,10 @@ class MainActivity : AppCompatActivity() {
         navigation.selectedItemId = R.id.navigation_schedule
 
     }
+
+    override fun onBackPressed() {
+        if(appFragmentManager.onBackPressed()){
+            super.onBackPressed()
+        }
+    }
 }

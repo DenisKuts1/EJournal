@@ -10,7 +10,7 @@ import com.chnu.ejournal.Student
 class StudentsAdapter(val progressBarColor: Int, val screenWidth: Int) : RecyclerView.Adapter<StudentViewHolder>()  {
 
     val items = ArrayList<Student>()
-    fun setItems(students: ArrayList<Student>){
+    fun setUpItems(students: ArrayList<Student>){
         items.clear()
         items.addAll(students)
         items.sortBy { it.name }

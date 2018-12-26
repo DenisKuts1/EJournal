@@ -19,7 +19,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.chnu.ejournal.*
 
-class SubjectFragment: Fragment() {
+class SubjectFragment : Fragment() {
 
     private lateinit var group: Group
     lateinit var subject: Subject
@@ -30,8 +30,8 @@ class SubjectFragment: Fragment() {
     lateinit var adapter: StudentsAdapter
     lateinit var image: ImageView
     lateinit var groupText: TextView
-    lateinit var fab:FloatingActionButton
-    lateinit var coordinatorLayout:CoordinatorLayout
+    lateinit var fab: FloatingActionButton
+    lateinit var coordinatorLayout: CoordinatorLayout
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,47 +45,33 @@ class SubjectFragment: Fragment() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.setDisplayShowHomeEnabled(true)
 
-
-
         collapsingToolbarLayout = view.findViewById(R.id.subject_collapsing_toolbar_layout)
 
+        groupText = view.findViewById(R.id.subject_appbar_group_text)
 
-        groupText = view.findViewById<TextView>(R.id.subject_appbar_group_text)
-
-        image = view.findViewById<ImageView>(R.id.subject_appbar_image)
-        //val title = view.findViewById<TextView>(R.id.subject_toolbar_title)
-        //title.text = subject.name
-
-
-
+        image = view.findViewById(R.id.subject_appbar_image)
 
         studentRecyclerView = view.findViewById(R.id.subject_students_list)
         studentRecyclerView.layoutManager = LinearLayoutManager(context)
 
-
-        fab = view.findViewById<FloatingActionButton>(R.id.subject_report_fab)
-        coordinatorLayout =  view.findViewById<CoordinatorLayout>(R.id.subject_root_layout)
-        appBarLayout.addOnOffsetChangedListener(object :AppBarLayout.OnOffsetChangedListener{
+        fab = view.findViewById(R.id.subject_report_fab)
+        coordinatorLayout = view.findViewById(R.id.subject_root_layout)
+        appBarLayout.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
             override fun onOffsetChanged(p0: AppBarLayout?, verticalOffset: Int) {
-                if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0)
-                {
-
+                if (Math.abs(verticalOffset) - appBarLayout.getTotalScrollRange() == 0) {
                     coordinatorLayout.setBackgroundColor(resources.getColor(R.color.colorBackground))
 
-                }
-                else
-                {
-                    if(subject!=null) {
+                } else {
+                    if (::subject.isInitialized) {
                         coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor())
                     }
                 }
             }
         })
-
         return view
     }
 
-    fun updateSubject(newSubject: Subject){
+    fun updateSubject(newSubject: Subject) {
         group = Group("543м/1")
         toolbar.title = subject.name
         subject = newSubject
@@ -126,8 +112,9 @@ class SubjectFragment: Fragment() {
         val size = Point()
         activity!!.windowManager.defaultDisplay.getSize(size)
         val adapter = StudentsAdapter(subject.getPrimaryImageColor(), size.x)
-        adapter.setItems(students)
+        adapter.setUpItems(students)
         studentRecyclerView.adapter = adapter
+
 
     }
 

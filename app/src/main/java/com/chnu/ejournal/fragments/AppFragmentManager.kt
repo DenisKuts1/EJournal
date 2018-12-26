@@ -20,6 +20,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context) {
     lateinit var navigation: BottomNavigationView
 
     private var current: Fragment
+    private var previous: Fragment
     private val settingsFragment = SettingsFragment()
     private val subjectsFragment = SubjectsFragment()
     private val scheduleFragment = ScheduleFragment()
@@ -33,6 +34,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context) {
         manager.beginTransaction().add(R.id.main_layout_place_holder, subjectsFragment).hide(subjectsFragment).commit()
         manager.beginTransaction().add(R.id.main_layout_place_holder, scheduleFragment).commit()
         current = scheduleFragment
+        previous = current
     }
 
     fun openSubjectFragment(subject: Subject){
@@ -40,21 +42,38 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context) {
         navigation.refreshDrawableState()
         subjectFragment.updateSubject(subject)
         manager.beginTransaction().hide(current).show(subjectFragment).commit()
+        previous = current
         current = subjectFragment
     }
 
     fun openScheduleFragment(){
+        navigation.visibility = View.VISIBLE
         manager.beginTransaction().hide(current).show(scheduleFragment).commit()
+        previous = current
         current = scheduleFragment
     }
 
     fun openSubjectListFragment(){
+        navigation.visibility = View.VISIBLE
         manager.beginTransaction().hide(current).show(subjectsFragment).commit()
+        previous = current
         current = subjectsFragment
     }
 
     fun openSettingsFragment(){
+        navigation.visibility = View.VISIBLE
         manager.beginTransaction().hide(current).show(settingsFragment).commit()
+        previous = current
         current = settingsFragment
+    }
+
+    fun onBackPressed(): Boolean{
+        return if(current is SubjectFragment){
+            manager.beginTransaction().hide(current).show(previous).commitAllowingStateLoss()
+            current = previous
+            false
+        } else {
+            true
+        }
     }
 }
