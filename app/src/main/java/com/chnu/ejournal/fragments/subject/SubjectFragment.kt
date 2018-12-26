@@ -27,7 +27,6 @@ class SubjectFragment : Fragment() {
     private lateinit var toolbar: Toolbar
     lateinit var collapsingToolbarLayout: CollapsingToolbarLayout
     lateinit var studentRecyclerView: RecyclerView
-    lateinit var adapter: StudentsAdapter
     lateinit var image: ImageView
     lateinit var groupText: TextView
     lateinit var fab: FloatingActionButton

@@ -2,6 +2,7 @@ package com.chnu.ejournal.fragments.subject
 
 import android.app.Activity
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.drawable.ShapeDrawable
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -16,15 +17,14 @@ import com.chnu.ejournal.fragments.subjects.SubjectsItem
 class StudentViewHolder(itemView: View, val progressBarColor: Int, val screenWidth: Int): RecyclerView.ViewHolder(itemView) {
     val nameField = itemView.findViewById<TextView>(R.id.student_item_student_name)
     val poitsField = itemView.findViewById<TextView>(R.id.student_item_points)
-    val progressBarLeft = itemView.findViewById<View>(R.id.student_item_progress_line)
-    val progressBarRight = itemView.findViewById<View>(R.id.student_item_background_progress_line)
+    val progressBar = itemView.findViewById<ProgressBar>(R.id.student_item_progress_bar)
+
 
     fun bindItem(item: Student) {
         nameField.text = item.name
         poitsField.text = item.points.toString()
-        progressBarLeft.setBackgroundColor(progressBarColor)
-        progressBarLeft.layoutParams.width = (screenWidth / 100.0 * item.points).toInt()
-        progressBarRight.layoutParams.width = (screenWidth / 100.0 * (100 - item.points)).toInt()
+        progressBar.progress = item.points
+        progressBar.progressTintList = ColorStateList.valueOf(progressBarColor)
     }
 }
 
