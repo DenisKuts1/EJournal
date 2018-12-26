@@ -13,7 +13,7 @@ import kotlin.collections.ArrayList
  * time - year, month, day, hour and minute of the start of the subject
  * image - id of the background image of the subject
  */
-data class Subject(val name: String, val group: Group, val time: Date, val image: Int) {
+data class Subject(val name: String, val group: Group, val time: Date, val image: Int, val lessonNumber: Int) {
     val labs = ArrayList<Lab>()
 
     fun getImage(context: Context): Drawable {

@@ -1,5 +1,6 @@
 package com.chnu.ejournal
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -7,11 +8,18 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import android.view.View
+import com.chnu.ejournal.entities.Group
+import com.chnu.ejournal.entities.LabCreator
 import com.chnu.ejournal.fragments.AppFragmentManager
 import com.chnu.ejournal.fragments.schedule.ScheduleFragment
 import com.chnu.ejournal.fragments.settings.SettingsFragment
 import com.chnu.ejournal.fragments.subjects.SubjectsFragment
+import com.chnu.ejournal.retrofit.MyRetrofitApi
 import kotlinx.android.synthetic.main.activity_main.*
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,62 +57,52 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_main)
-        appFragmentManager = AppFragmentManager(supportFragmentManager, baseContext, navigation)
-        /*first_button.setOnClickListener {
-            Observable.create<String> {
-                subscriber ->
-                var response: Response<TestResponse>?
-                try {
-                    response = MyRetrofitApi.justGet()
-                } catch (e: Exception){
-                    response = null
-                    e.printStackTrace()
+
+        Observable.create<String> { subscriber ->
+            try {
+                MyRetrofitApi.init(this)
+
+                val lessons = MyRetrofitApi.getLessons(intent.extras["id"] as Long).body()
+                LabCreator.lessons.addAll(lessons!!)
+
+                LabCreator.week = MyRetrofitApi.getWeekNumber().body()!!
+                val groupIds = ArrayList<Long>()
+                LabCreator.lessons.forEach { lesson ->
+                    if(!groupIds.contains(lesson.groupId)){
+                        groupIds += lesson.groupId
+                    }
                 }
-                subscriber.onNext(response!!.body()!!.test)
-                subscriber.onCompleted()
-            }.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            { text ->
-                                textView.text = text
-                            },
-                            { e ->
 
-                            }
-                    )
-        }
-
-        second_button.setOnClickListener {
-            Observable.create<String> {
-                subscriber ->
-                var response: Response<TestResponse>?
-                try {
-                    response = MyRetrofitApi.secureGet()
-                } catch (e: Exception){
-                    response = null
-                    e.printStackTrace()
+                groupIds.forEach { id ->
+                    val groupDto = MyRetrofitApi.getGroup(id).body()!!
+                    LabCreator.groups += Group(groupDto.id, groupDto.name)
                 }
-                subscriber.onNext(response!!.body()!!.test)
-                subscriber.onCompleted()
-            }.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            { text ->
-                                textView.text = text
-                            },
-                            { e ->
+                LabCreator.lessons.forEach { lesson ->
+                    LabCreator.subjects += LabCreator.subjectFromLesson(lesson)
+                }
 
-                            }
-                    )
-        }*/
 
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        navigation.selectedItemId = R.id.navigation_schedule
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            subscriber.onNext("")
+            subscriber.onCompleted()
+        }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { retrievedNews ->
+                            appFragmentManager = AppFragmentManager(supportFragmentManager, baseContext, navigation)
+                            navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+                            navigation.selectedItemId = R.id.navigation_schedule
+                        },
+                        { e ->
 
+                        }
+                )
     }
 
     override fun onBackPressed() {
-        if(appFragmentManager.onBackPressed()){
+        if (appFragmentManager.onBackPressed()) {
             super.onBackPressed()
         }
     }

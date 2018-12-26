@@ -66,6 +66,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context, val
 
     fun openSubjectListFragment(){
         navigation.visibility = View.VISIBLE
+        subjectsFragment.updateList()
         manager.beginTransaction().hide(current).show(subjectsFragment).commit()
         previous = current
         current = subjectsFragment

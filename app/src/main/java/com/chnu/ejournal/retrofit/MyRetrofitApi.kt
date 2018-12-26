@@ -14,7 +14,7 @@ object MyRetrofitApi {
             .build()
     lateinit var api: RESTApi
 
-    fun init(context: Context){
+    fun init(context: Context) {
         api = newRetrofit(context, "http://10.0.2.2:8080", RESTApi::class.java)
     }
 
@@ -27,6 +27,12 @@ object MyRetrofitApi {
     fun auth(token: String) = api.auth(token).execute().also {
         // Log.i("ЬУУУУУУУУУІІІІІІІІІІуп", it.message())
     }
+
+    fun getLessons(professorId: Long) = api.getLessons(professorId).execute()
+
+    fun getGroup(groupId: Long) = api.getGroup(groupId).execute()
+
+    fun getWeekNumber() = api.getWeekNumber().execute()
 
     fun justGet() = api.justGet().execute()
     fun secureGet(): Response<TestResponse> {

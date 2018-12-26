@@ -39,20 +39,25 @@ class SubjectsFragment : Fragment() {
         }
     }
 
+    lateinit var subjectList: RecyclerView
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.fragment_subjects, container, false)
 
-        val subjectList = view.findViewById<RecyclerView>(R.id.subjects_recycler_view)
+        subjectList = view.findViewById<RecyclerView>(R.id.subjects_recycler_view)
+
+        return view
+    }
+
+    fun updateList(){
         val adapter = SubjectsAdapter()
-        val items = LabCreator.subjects
+        val items = LabCreator.lessons
 
         adapter.setItems(items)
         val manager = LinearLayoutManager(context)
         subjectList.layoutManager = manager
         subjectList.adapter = adapter
-
-        return view
     }
 
 

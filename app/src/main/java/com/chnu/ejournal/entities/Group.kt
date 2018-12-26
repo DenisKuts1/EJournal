@@ -1,5 +1,5 @@
 package com.chnu.ejournal.entities
 
-class Group(val number: String) {
+class Group(val id: Long, val number: String) {
     val students = ArrayList<Student>()
 }

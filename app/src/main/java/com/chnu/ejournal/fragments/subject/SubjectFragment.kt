@@ -78,7 +78,7 @@ class SubjectFragment : Fragment() {
     }
 
     fun updateSubject(newSubject: Subject) {
-        group = Group("543м/1")
+        group = newSubject.group
         toolbar.title = subject.name
         subject = newSubject
         image.setImageDrawable(subject.getImage(context!!))

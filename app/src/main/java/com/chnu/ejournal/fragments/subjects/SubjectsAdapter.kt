@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.chnu.ejournal.R
+import com.chnu.ejournal.entities.LessonDTO
 import com.chnu.ejournal.entities.Subject
 import java.lang.RuntimeException
 
@@ -11,20 +12,20 @@ class SubjectsAdapter : RecyclerView.Adapter<BaseSubjectViewHolder>() {
 
     val items = ArrayList<SubjectsItem>()
 
-    fun setItems(subjects: ArrayList<Subject>) {
+    fun setItems(subjects: ArrayList<LessonDTO>) {
         items.clear()
 
         if (subjects.isEmpty()) return
 
-        subjects.sortBy { subject -> subject.name }
+        subjects.sortBy { subject -> subject.lessonName }
         var lastHeaderChar = '0'
         subjects.forEach { subject ->
-            val firstChar = subject.name[0]
+            val firstChar = subject.lessonName[0]
             if(lastHeaderChar != firstChar){
                 items += SubjectsItem(firstChar.toString(), SubjectsItemType.HEADER)
                 lastHeaderChar = firstChar
             }
-            items.add(SubjectsItem(subject.name, SubjectsItemType.ITEM))
+            items.add(SubjectsItem(subject.lessonName, SubjectsItemType.ITEM))
         }
     }
 

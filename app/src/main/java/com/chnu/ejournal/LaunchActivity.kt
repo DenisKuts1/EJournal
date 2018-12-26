@@ -75,19 +75,13 @@ class LaunchActivity : AppCompatActivity() {
             subscriber ->
             try {
                 MyRetrofitApi.init(this)
-                println(status)
+
                 val response = MyRetrofitApi.auth(status)
                 if(response.isSuccessful){
-                    response.headers().names().forEach {
-                        println("$it: ${response.headers().get(it)}")
-
-                    }
                     val user = response.body()
-                    println(response.body()!!.id)
-                    /*val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("email", "qwe")
-                    intent.putExtra("token", status)
-                    startActivity(intent)*/
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("id", user!!.id)
+                    startActivity(intent)
                 } else {
 
                 }
