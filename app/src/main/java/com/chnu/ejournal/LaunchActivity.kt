@@ -71,21 +71,23 @@ class LaunchActivity : AppCompatActivity() {
 
     fun beginWork(email: String, status: String){
         //Auth on server
-        /*Observable.create<String> {
+        Observable.create<String> {
             subscriber ->
             try {
                 MyRetrofitApi.init(this)
+                println(status)
                 val response = MyRetrofitApi.auth(status)
                 if(response.isSuccessful){
                     response.headers().names().forEach {
                         println("$it: ${response.headers().get(it)}")
 
                     }
-                    println(response.body()!!.email)
-                    val intent = Intent(this, MainActivity::class.java)
+                    val user = response.body()
+                    println(response.body()!!.id)
+                    /*val intent = Intent(this, MainActivity::class.java)
                     intent.putExtra("email", "qwe")
                     intent.putExtra("token", status)
-                    startActivity(intent)
+                    startActivity(intent)*/
                 } else {
 
                 }
@@ -103,12 +105,12 @@ class LaunchActivity : AppCompatActivity() {
                 { e ->
 
                 }
-        )*/
+        )
 
         // For testing without server only
-        val intent = Intent(this, MainActivity::class.java)
+        /*val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("email", email)
         intent.putExtra("token", status)
-        startActivity(intent)
+        startActivity(intent)*/
     }
 }

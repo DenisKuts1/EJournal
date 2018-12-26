@@ -58,6 +58,9 @@ class SubjectFragment : Fragment() {
 
 
         fab = view.findViewById(R.id.subject_report_fab)
+        fab.setOnClickListener {
+            ReportCreator.createReport(subject, context!!)
+        }
         coordinatorLayout = view.findViewById(R.id.subject_root_layout)
         appBarLayout.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
             override fun onOffsetChanged(p0: AppBarLayout?, verticalOffset: Int) {
