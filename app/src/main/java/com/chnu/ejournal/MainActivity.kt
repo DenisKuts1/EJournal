@@ -49,8 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_main)
-        appFragmentManager = AppFragmentManager(supportFragmentManager, baseContext)
-        appFragmentManager.navigation = navigation
+        appFragmentManager = AppFragmentManager(supportFragmentManager, baseContext, navigation)
         /*first_button.setOnClickListener {
             Observable.create<String> {
                 subscriber ->

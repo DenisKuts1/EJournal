@@ -15,9 +15,8 @@ import com.chnu.ejournal.fragments.subject.SubjectFragment
 import com.chnu.ejournal.fragments.subjects.SubjectsFragment
 import java.util.*
 
-class AppFragmentManager(val manager: FragmentManager, val context: Context) {
+class AppFragmentManager(val manager: FragmentManager, val context: Context, val navigation: BottomNavigationView) {
 
-    lateinit var navigation: BottomNavigationView
 
     private var current: Fragment
     private var previous: Fragment
@@ -29,7 +28,9 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context) {
     init {
         subjectFragment.subject = Subject(context,"123", "321", Date(), 1)
         scheduleFragment.appFragmentManager = this
+        navigation.visibility = View.GONE
         manager.beginTransaction().add(R.id.main_layout_place_holder, subjectFragment).hide(subjectFragment).commit()
+        navigation.visibility = View.VISIBLE
         manager.beginTransaction().add(R.id.main_layout_place_holder, settingsFragment).hide(settingsFragment).commit()
         manager.beginTransaction().add(R.id.main_layout_place_holder, subjectsFragment).hide(subjectsFragment).commit()
         manager.beginTransaction().add(R.id.main_layout_place_holder, scheduleFragment).commit()
@@ -38,6 +39,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context) {
     }
 
     fun openSubjectFragment(subject: Subject){
+        println(navigation)
         navigation.visibility = View.GONE
         navigation.refreshDrawableState()
         subjectFragment.updateSubject(subject)
@@ -47,6 +49,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context) {
     }
 
     fun openScheduleFragment(){
+        println(navigation)
         navigation.visibility = View.VISIBLE
         manager.beginTransaction().hide(current).show(scheduleFragment).commit()
         previous = current
@@ -54,6 +57,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context) {
     }
 
     fun openSubjectListFragment(){
+        println(navigation)
         navigation.visibility = View.VISIBLE
         manager.beginTransaction().hide(current).show(subjectsFragment).commit()
         previous = current
@@ -61,6 +65,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context) {
     }
 
     fun openSettingsFragment(){
+        println(navigation)
         navigation.visibility = View.VISIBLE
         manager.beginTransaction().hide(current).show(settingsFragment).commit()
         previous = current
@@ -69,6 +74,8 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context) {
 
     fun onBackPressed(): Boolean{
         return if(current is SubjectFragment){
+            println(navigation)
+            navigation.visibility = View.VISIBLE
             manager.beginTransaction().hide(current).show(previous).commitAllowingStateLoss()
             current = previous
             false
