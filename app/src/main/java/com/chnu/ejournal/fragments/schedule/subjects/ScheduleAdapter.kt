@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.chnu.ejournal.R
-import com.chnu.ejournal.Subject
+import com.chnu.ejournal.entities.Subject
 import java.lang.RuntimeException
 import java.util.*
 

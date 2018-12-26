@@ -3,7 +3,7 @@ package com.chnu.ejournal.fragments.schedule.subjects
 import android.content.Context
 import android.graphics.drawable.Drawable
 import com.chnu.ejournal.R
-import com.chnu.ejournal.Subject
+import com.chnu.ejournal.entities.Subject
 import java.util.*
 
 enum class ScheduleItemType {
@@ -70,7 +70,7 @@ class ScheduleSubject(val subject: Subject, val context: Context) : ScheduleItem
         }
     }
     fun getImage():Drawable{
-        return subject.getImage()
+        return subject.getImage(context)
     }
 }
 

@@ -27,7 +27,7 @@ class ScheduleItemViewHolder(subjectView: View, val context: Context, val listen
     override fun bindItem(item: ScheduleItem) {
         val subject = item as ScheduleSubject
         nameField.text = subject.getName()
-        groupField.text = subject.getGroup()
+        groupField.text = subject.getGroup().number
         timeField.text = subject.getTime()
         val background = GradientDrawable()
         image.setImageDrawable(subject.getImage())

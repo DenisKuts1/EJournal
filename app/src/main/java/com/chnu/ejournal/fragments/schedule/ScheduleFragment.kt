@@ -1,7 +1,6 @@
 package com.chnu.ejournal.fragments.schedule
 
 import android.os.Bundle
-import android.os.Handler
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -10,21 +9,18 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.chnu.ejournal.MainActivity
 import com.chnu.ejournal.R
-import com.chnu.ejournal.Subject
+import com.chnu.ejournal.entities.Subject
 import java.util.*
 import android.view.animation.AlphaAnimation
 import android.widget.RelativeLayout
-import android.widget.ToggleButton
 import com.chnu.ejournal.fragments.schedule.days.ScheduleDaysAdapter
 import android.support.v7.widget.LinearSmoothScroller
-import android.support.v4.os.HandlerCompat.postDelayed
-import android.support.v4.widget.NestedScrollView
 import android.util.TypedValue
 import android.view.animation.Animation
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.chnu.ejournal.entities.LabCreator
 import com.chnu.ejournal.fragments.AppFragmentManager
 import com.chnu.ejournal.fragments.schedule.subjects.*
 
@@ -122,17 +118,7 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
     fun initSubjectsList() {
         scheduleList = mainView.findViewById(R.id.schedule_view)
 
-        val items = arrayListOf(
-                Subject(context!!,"Networking", "242/1 group", Date(118, 11, 1, 9, 40), 14),
-                Subject(context!!, "Math analysis", "341/2 group", Date(118, 11, 1, 13, 0), 11),
-                Subject(context!!, "Cryptography", "341/2 group", Date(118, 11, 1, 8, 20), 8),
-                Subject(context!!, "Coding with Mironiv", "143/2 group", Date(118, 11, 1, 9, 50), 10),
-                Subject(context!!, "Computer architecture", "143/2 group", Date(118, 11, 3, 9, 50), 9),
-                Subject(context!!, "Quality assurance", "341/2 group", Date(118, 11, 2, 8, 20), 13),
-                Subject(context!!, "Computer architecture", "143/2 group", Date(118, 11, 3, 8, 20), 8),
-                Subject(context!!, "Computer architecture", "143/2 group", Date(118, 11, 4, 9, 50), 8),
-                Subject(context!!, "Computer architecture", "143/2 group", Date(118, 11, 5, 8, 20), 8),
-                Subject(context!!, "Computer architecture", "143/2 group", Date(118, 11, 5, 9, 50), 8))
+        val items = LabCreator.subjects
         scheduleAdapter = ScheduleAdapter(context!!)
         val manager = LinearLayoutManager(context)
         scheduleAdapter.setItems(items)

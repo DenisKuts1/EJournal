@@ -2,7 +2,6 @@ package com.chnu.ejournal.fragments.subject
 
 import android.content.res.ColorStateList
 import android.graphics.Point
-import android.graphics.Rect
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.CollapsingToolbarLayout
@@ -12,12 +11,13 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
-import android.util.Log
-import android.util.TypedValue
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import com.chnu.ejournal.*
+import com.chnu.ejournal.entities.Group
+import com.chnu.ejournal.entities.Student
+import com.chnu.ejournal.entities.Subject
 
 class SubjectFragment : Fragment() {
 
@@ -62,7 +62,7 @@ class SubjectFragment : Fragment() {
 
                 } else {
                     if (::subject.isInitialized) {
-                        coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor())
+                        coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor(context!!))
                     }
                 }
             }
@@ -74,44 +74,21 @@ class SubjectFragment : Fragment() {
         group = Group("543м/1")
         toolbar.title = subject.name
         subject = newSubject
-        image.setImageDrawable(subject.getImage())
+        image.setImageDrawable(subject.getImage(context!!))
         groupText.text = "${group.number} group 45%"
         toolbar.title = subject.name
-        fab.backgroundTintList = ColorStateList.valueOf(subject.getPrimaryImageColor())
-        coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor())
-        collapsingToolbarLayout.setContentScrimColor(subject.getPrimaryImageColor())
+        fab.backgroundTintList = ColorStateList.valueOf(subject.getPrimaryImageColor(context!!))
+        coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor(context!!))
+        collapsingToolbarLayout.setContentScrimColor(subject.getPrimaryImageColor(context!!))
 
 
-        val students = arrayListOf(Student("Куц Денис", group, 2, 100),
-                Student("Ніколаєвич Владислав", group, 2, 95),
-                Student("Чижевський Василь", group, 2, 90),
-                Student("Великий Князь Архо Владислав", group, 2, 0),
-                Student("Гаврилиця Федір", group, 2, 85),
-                Student("Лабінськой Віктор", group, 2, 70),
-                Student("Лисенко Юлія", group, 2, 70),
-                Student("Лазоряк Олександр", group, 2, 90),
-                Student("Твардовський Роман", group, 2, 80),
-                Student("Слободяник Олексій", group, 2, 50),
-                Student("Бахір Антоніна", group, 2, 50),
-
-                Student("Куц Денис", group, 2, 100),
-                Student("Ніколаєвич Владислав", group, 2, 95),
-                Student("Чижевський Василь", group, 2, 90),
-                Student("Великий Князь Архо Владислав", group, 2, 0),
-                Student("Гаврилиця Федір", group, 2, 85),
-                Student("Лабінськой Віктор", group, 2, 70),
-                Student("Лисенко Юлія", group, 2, 70),
-                Student("Лазоряк Олександр", group, 2, 90),
-                Student("Твардовський Роман", group, 2, 80),
-                Student("Слободяник Олексій", group, 2, 50),
-                Student("Бахір Антоніна", group, 2, 50)
-        )
+        val students = subject.group.students
         studentRecyclerView.layoutManager = LinearLayoutManager(context)
 
         val size = Point()
         activity!!.windowManager.defaultDisplay.getSize(size)
-        val adapter = StudentsAdapter(subject.getPrimaryImageColor(), size.x)
-        adapter.setUpItems(students)
+        val adapter = StudentsAdapter(subject.getPrimaryImageColor(context!!))
+        adapter.setUpItems(students, subject)
         studentRecyclerView.adapter = adapter
 
 
