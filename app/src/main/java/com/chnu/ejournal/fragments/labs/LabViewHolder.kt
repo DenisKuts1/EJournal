@@ -27,7 +27,7 @@ class LabViewHolder(itemView: View, val shapeColor: Int, val listener: (Int) -> 
         nameField.text = item.name
         poitsField.text = "${item.point}/${item.maxPoint}"
 
-        if (item.name.contains("est")){ //THIS is PAIN !!!! REMOVE THIS SHIT ASAP
+        if (item.name.contains("Контрольна")){ //THIS is PAIN !!!! REMOVE THIS SHIT ASAP
             val drawable = layout.resources.getDrawable(R.drawable.even_better_design)
             drawable.setColorFilter(shapeColor, PorterDuff.Mode.SRC_ATOP)
             drawable.alpha = 100

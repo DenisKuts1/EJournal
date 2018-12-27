@@ -7,11 +7,11 @@ object LabCreator {
     fun createLabsForSubject(subject: Subject) {
         subject.labs.clear()
         (1..5).forEach { i ->
-            subject.labs += Lab("Лаб роб$i", 5, LabType.LAB)
+            subject.labs += Lab("Лаб роб $i", 5, LabType.LAB)
         }
         subject.labs += Lab("Контрольна 1", 10, LabType.TEST)
         (5..10).forEach { i ->
-            subject.labs += Lab("Лаб роб$i", 5, LabType.LAB)
+            subject.labs += Lab("Лаб роб $i", 5, LabType.LAB)
         }
         subject.labs += Lab("Контрольна 2", 10, LabType.TEST)
         subject.labs += Lab("Іспит", 30, LabType.EXAM)

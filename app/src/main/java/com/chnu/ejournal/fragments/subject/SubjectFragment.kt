@@ -79,7 +79,7 @@ class SubjectFragment : Fragment() {
         toolbar.title = subject.name
         subject = newSubject
         image.setImageDrawable(subject.getImage(context!!))
-        groupText.text = "${group.number} group 45%"
+        groupText.text = "${group.number} гр 45%"
         toolbar.title = subject.name
         fab.backgroundTintList = ColorStateList.valueOf(subject.getPrimaryImageColor(context!!))
         coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor(context!!))
