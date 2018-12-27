@@ -138,7 +138,7 @@ class ScheduleFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
         scheduleList.layoutManager = manager
         scheduleAdapter.setListener { position ->
             appFragmentManager.openSubjectFragment((scheduleAdapter.getItem(position) as ScheduleSubject).subject)
-            println((scheduleAdapter.getItem(position) as ScheduleSubject).subject.name)
+            //println((scheduleAdapter.getItem(position) as ScheduleSubject).subject.name)
         }
 
         scheduleList.addOnScrollListener(object : RecyclerView.OnScrollListener() {

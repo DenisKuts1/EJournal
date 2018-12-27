@@ -14,15 +14,23 @@ class HeaderSubjectsViewHolder(headerView: View): BaseSubjectViewHolder(headerVi
     val textField = headerView.findViewById<TextView>(R.id.subject_list_header_item_text)
 
     override fun bindItem(item: SubjectsItem) {
-        textField.text = item.text
+        textField.text = (item as SubjectsHeaderItem).name
     }
 }
 
-class ItemSubjectsViewHolder(itemView: View): BaseSubjectViewHolder(itemView){
+class ItemSubjectsViewHolder(itemView: View, val listener: (Int) -> Unit): BaseSubjectViewHolder(itemView){
 
     val textField = itemView.findViewById<TextView>(R.id.subject_list_item_text)
 
+    init {
+        itemView.setOnClickListener{
+            if(adapterPosition != RecyclerView.NO_POSITION){
+                listener(adapterPosition)
+            }
+        }
+    }
+
     override fun bindItem(item: SubjectsItem) {
-        textField.text = item.text
+        textField.text = (item as SubjectsItemBody).subject.name
     }
 }

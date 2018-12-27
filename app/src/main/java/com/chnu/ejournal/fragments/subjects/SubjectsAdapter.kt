@@ -8,24 +8,32 @@ import com.chnu.ejournal.entities.LessonDTO
 import com.chnu.ejournal.entities.Subject
 import java.lang.RuntimeException
 
-class SubjectsAdapter : RecyclerView.Adapter<BaseSubjectViewHolder>() {
+class SubjectsAdapter() : RecyclerView.Adapter<BaseSubjectViewHolder>() {
 
     val items = ArrayList<SubjectsItem>()
 
-    fun setItems(subjects: ArrayList<LessonDTO>) {
+    private lateinit var listener: (Int) -> Unit
+
+    fun setListener(listener: (Int) -> Unit) {
+        this.listener = listener
+    }
+
+    fun getItem(position: Int) = items[position]
+
+    fun setItems(subjects: ArrayList<Subject>) {
         items.clear()
 
         if (subjects.isEmpty()) return
 
-        subjects.sortBy { subject -> subject.lessonName }
+        subjects.sortBy { subject -> subject.name }
         var lastHeaderChar = '0'
         subjects.forEach { subject ->
-            val firstChar = subject.lessonName[0]
+            val firstChar = subject.name[0]
             if(lastHeaderChar != firstChar){
-                items += SubjectsItem(firstChar.toString(), SubjectsItemType.HEADER)
+                items += SubjectsHeaderItem(firstChar.toString(), SubjectsItemType.HEADER)
                 lastHeaderChar = firstChar
             }
-            items.add(SubjectsItem(subject.lessonName, SubjectsItemType.ITEM))
+            items.add(SubjectsItemBody(subject, SubjectsItemType.ITEM))
         }
     }
 
@@ -38,7 +46,7 @@ class SubjectsAdapter : RecyclerView.Adapter<BaseSubjectViewHolder>() {
             }
             SubjectsItemType.ITEM.ordinal -> {
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.subject_item, parent, false)
-                ItemSubjectsViewHolder(view)
+                ItemSubjectsViewHolder(view, listener)
             }
             else -> throw RuntimeException("Unknown type")
         }

@@ -31,6 +31,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context, val
         scheduleFragment.appFragmentManager = this
         subjectFragment.appFragmentManager = this
         labsFragment.appFragmentManager = this
+        subjectsFragment.appFragmentManager = this
         manager.beginTransaction().add(R.id.main_layout_place_holder, subjectFragment).hide(subjectFragment).commit()
         manager.beginTransaction().add(R.id.main_layout_place_holder, labsFragment).hide(labsFragment).commit()
         manager.beginTransaction().add(R.id.main_layout_place_holder, settingsFragment).hide(settingsFragment).commit()

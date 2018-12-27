@@ -7,9 +7,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.chnu.ejournal.App
 import com.chnu.ejournal.R
 import com.chnu.ejournal.entities.LabCreator
 import com.chnu.ejournal.entities.Subject
+import com.chnu.ejournal.fragments.AppFragmentManager
+import com.chnu.ejournal.fragments.schedule.subjects.ScheduleSubject
 import java.util.*
 
 
@@ -30,7 +33,7 @@ private const val ARG_PARAM2 = "param2"
 class SubjectsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var email: String? = null
-
+    lateinit var appFragmentManager: AppFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,25 +46,27 @@ class SubjectsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view =  inflater.inflate(R.layout.fragment_subjects, container, false)
+        val view = inflater.inflate(R.layout.fragment_subjects, container, false)
 
         subjectList = view.findViewById<RecyclerView>(R.id.subjects_recycler_view)
 
         return view
     }
 
-    fun updateList(){
+    fun updateList() {
         val adapter = SubjectsAdapter()
-        val items = LabCreator.lessons
+
+        adapter.setListener { position ->
+            appFragmentManager.openSubjectFragment((adapter.getItem(position) as SubjectsItemBody).subject)
+
+        }
+        val items = LabCreator.subjects
 
         adapter.setItems(items)
         val manager = LinearLayoutManager(context)
         subjectList.layoutManager = manager
         subjectList.adapter = adapter
     }
-
-
-
 
 
     companion object {
