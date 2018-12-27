@@ -10,6 +10,9 @@ object LabCreator {
     val groups = ArrayList<Group>()
     val subjects = ArrayList<Subject>()
 
+    var newPoint = 0.0
+    var wasNewPoint = false
+
     fun subjectFromLesson(lesson: LessonDTO): Subject{
         val calendar = Calendar.getInstance()
         calendar.time = Date()

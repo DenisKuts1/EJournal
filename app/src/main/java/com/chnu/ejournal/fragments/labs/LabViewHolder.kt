@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.chnu.ejournal.R
+import com.chnu.ejournal.entities.Lab
 
 class LabViewHolder(itemView: View, val shapeColor: Int, val listener: (Int) -> Unit) : RecyclerView.ViewHolder(itemView) {
     val nameField = itemView.findViewById<TextView>(R.id.lab_item_name)
@@ -22,10 +23,10 @@ class LabViewHolder(itemView: View, val shapeColor: Int, val listener: (Int) -> 
 
 
     fun bindItem(item: LabItem) {
-        nameField.text = item.name
-        poitsField.text = "${item.point}/${item.maxPoint}"
+        nameField.text = item.lab.name
+        poitsField.text = "${item.points}/${item.lab.maxMark}"
         // TODO magic with shape for layout
     }
 }
 
-class LabItem(val name: String, val maxPoint: Int, val point: Int)
+class LabItem(val lab: Lab, val points: Int)

@@ -14,6 +14,7 @@ import com.chnu.ejournal.R
 import com.chnu.ejournal.entities.Student
 import com.chnu.ejournal.entities.Subject
 import com.chnu.ejournal.fragments.AppFragmentManager
+import com.chnu.ejournal.fragments.dialogs.AddPointDialog
 import com.chnu.ejournal.fragments.schedule.subjects.ScheduleSubject
 
 class LabsFragment: Fragment(){
@@ -42,7 +43,12 @@ class LabsFragment: Fragment(){
         val adapter = LabAdapter(subject.getPrimaryImageColor(context!!))
         adapter.setItems(student, subject)
         adapter.setListener {position ->
-            //appFragmentManager.openLabFragment(student, subject)
+            val lab = adapter.getItems(position).lab
+            val dialog = AddPointDialog()
+            dialog.lab = lab
+            dialog.student = student
+            dialog.show(activity!!.supportFragmentManager, "tag")
+
         }
         recycledView.layoutManager = LinearLayoutManager(context)
         recycledView.adapter = adapter

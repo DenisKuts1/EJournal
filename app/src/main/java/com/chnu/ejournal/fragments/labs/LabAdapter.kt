@@ -21,9 +21,11 @@ class LabAdapter(val shapeColor: Int) : RecyclerView.Adapter<LabViewHolder>() {
     fun setItems(student: Student, subject: Subject){
         subject.labs.forEach { lab ->
             val point = lab.points[student]!!
-            items += LabItem(lab.name, lab.maxMark.roundToInt(), point)
+            items += LabItem(lab,  point)
         }
     }
+
+    fun getItems(position: Int) = items[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): LabViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.lab_item, parent, false)

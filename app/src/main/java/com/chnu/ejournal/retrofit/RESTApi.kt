@@ -33,6 +33,9 @@ interface RESTApi {
     @GET("student/{studentId}/task/{taskId}")
     fun getPointOfStudent(@Path("studentId") studentId: Long, @Path("taskId") taskId: Long): Call<Double>
 
+    @POST("student/{studentId}/task/{taskId}/points/{points}")
+    fun postPoint(@Path("studentId") studentId: Long, @Path("taskId") taskId: Long, @Path("points") points: Double): Call<Unit>
+
     @GET("/just_get")
     fun justGet(): Call<TestResponse>
 

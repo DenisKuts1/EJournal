@@ -38,6 +38,8 @@ object MyRetrofitApi {
 
     fun getPointOfStudent(studentId: Long, taskId: Long) = api.getPointOfStudent(studentId, taskId).execute()
 
+    fun postPoint(studentId: Long, taskId: Long, points: Double) = api.postPoint(studentId, taskId, points).execute()
+
     fun getWeekNumber() = api.getWeekNumber().execute()
 
     fun justGet() = api.justGet().execute()

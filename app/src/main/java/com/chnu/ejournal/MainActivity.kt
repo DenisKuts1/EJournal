@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                 MyRetrofitApi.init(this)
 
                 val lessons = MyRetrofitApi.getLessons(intent.extras["id"] as Long).body()
+                LabCreator.lessons.clear()
                 LabCreator.lessons.addAll(lessons!!)
 
                 LabCreator.week = MyRetrofitApi.getWeekNumber().body()!!
@@ -75,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                         groupIds += lesson.groupId
                     }
                 }
-
+                LabCreator.groups.clear()
                 groupIds.forEach { id ->
                     val groupDto = MyRetrofitApi.getGroup(id).body()!!
                     val students = MyRetrofitApi.getStudentsOfGroup(id).body()!!
@@ -85,6 +86,8 @@ class MainActivity : AppCompatActivity() {
                     }
                     LabCreator.groups += group
                 }
+
+                LabCreator.subjects.clear()
                 LabCreator.lessons.forEach { lesson ->
                     val labs = MyRetrofitApi.getLabsOfSubject(lesson.lessonId).body()
                     val subject = LabCreator.subjectFromLesson(lesson)
