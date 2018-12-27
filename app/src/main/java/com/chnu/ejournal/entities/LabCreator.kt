@@ -46,10 +46,13 @@ object LabCreator {
 
     /*fun createLabsForSubject(subject: Subject) {
         subject.labs.clear()
-        (1..10).forEach { i ->
+        (1..5).forEach { i ->
             subject.labs += Lab("Lab$i", 5, LabType.LAB)
         }
         subject.labs += Lab("Test1", 10, LabType.TEST)
+        (5..10).forEach { i ->
+            subject.labs += Lab("Lab$i", 5, LabType.LAB)
+        }
         subject.labs += Lab("Test2", 10, LabType.TEST)
         subject.labs += Lab("Exam", 30, LabType.EXAM)
 

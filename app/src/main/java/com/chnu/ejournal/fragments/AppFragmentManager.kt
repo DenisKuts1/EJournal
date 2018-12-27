@@ -5,6 +5,8 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import com.chnu.ejournal.R
 import com.chnu.ejournal.entities.LabCreator
 import com.chnu.ejournal.entities.Student
@@ -16,7 +18,7 @@ import com.chnu.ejournal.fragments.subject.SubjectFragment
 import com.chnu.ejournal.fragments.subjects.SubjectsFragment
 import java.util.*
 
-class AppFragmentManager(val manager: FragmentManager, val context: Context, val navigation: BottomNavigationView) {
+class AppFragmentManager(val manager: FragmentManager, val context: Context, val navigation: BottomNavigationView,window123: Window) {
 
 
     private var current: Fragment
@@ -26,6 +28,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context, val
     private val scheduleFragment = ScheduleFragment()
     private val subjectFragment = SubjectFragment()
     private val labsFragment = LabsFragment()
+    private var window = window123
     init {
         subjectFragment.subject = LabCreator.subjects[0]
         scheduleFragment.appFragmentManager = this
@@ -39,12 +42,14 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context, val
         manager.beginTransaction().add(R.id.main_layout_place_holder, scheduleFragment).commit()
         current = scheduleFragment
         previous = current
+
     }
 
     fun openSubjectFragment(subject: Subject){
         navigation.visibility = View.GONE
         navigation.refreshDrawableState()
         subjectFragment.updateSubject(subject)
+        window.statusBarColor = subject.getPrimaryImageColor(context)
         manager.beginTransaction().hide(current).show(subjectFragment).commit()
         previous = current
         current = subjectFragment
@@ -54,6 +59,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context, val
         navigation.visibility = View.GONE
         navigation.refreshDrawableState()
         labsFragment.setUp(student, subject)
+        window.statusBarColor = subject.getPrimaryImageColor(context)
         manager.beginTransaction().hide(current).show(labsFragment).commit()
         current = labsFragment
     }
@@ -61,6 +67,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context, val
     fun openScheduleFragment(){
         navigation.visibility = View.VISIBLE
         manager.beginTransaction().hide(current).show(scheduleFragment).commit()
+        window.statusBarColor = context.resources.getColor(R.color.colorBackground)
         previous = current
         current = scheduleFragment
     }
@@ -69,6 +76,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context, val
         navigation.visibility = View.VISIBLE
         subjectsFragment.updateList()
         manager.beginTransaction().hide(current).show(subjectsFragment).commit()
+        window.statusBarColor = context.resources.getColor(R.color.colorBackground)
         previous = current
         current = subjectsFragment
     }
@@ -76,6 +84,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context, val
     fun openSettingsFragment(){
         navigation.visibility = View.VISIBLE
         manager.beginTransaction().hide(current).show(settingsFragment).commit()
+        window.statusBarColor = context.resources.getColor(R.color.colorBackground)
         previous = current
         current = settingsFragment
     }
@@ -85,6 +94,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context, val
             is SubjectFragment -> {
                 navigation.visibility = View.VISIBLE
                 manager.beginTransaction().hide(current).show(previous).commitAllowingStateLoss()
+                window.statusBarColor = context.resources.getColor(R.color.colorBackground)
                 current = previous
                 false
             }
