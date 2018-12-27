@@ -82,7 +82,10 @@ class SubjectFragment : Fragment() {
         subject = newSubject
         image.setImageDrawable(subject.getImage(context!!))
         groupText.text = "${group.number} гр 45%"
-        toolbar.title = newSubject.name
+        (activity as MainActivity).setSupportActionBar(toolbar)
+        (activity as MainActivity).supportActionBar!!.title = newSubject.name
+        collapsingToolbarLayout.title = newSubject.name
+        println(newSubject.name)
         toolbar.refreshDrawableState()
         fab.backgroundTintList = ColorStateList.valueOf(subject.getPrimaryImageColor(context!!))
         coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor(context!!))
@@ -109,7 +112,7 @@ class SubjectFragment : Fragment() {
     }
 
     fun updateSubject() {
-
+        toolbar.title = subject.name
         val students = subject.group.students
         studentRecyclerView.layoutManager = LinearLayoutManager(context)
 
