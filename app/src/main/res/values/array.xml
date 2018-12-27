@@ -72,6 +72,11 @@
         <item>@drawable/net</item>//13
         <item>@drawable/qc</item>//14
         <item>@drawable/net2</item>//15
+        <item>@drawable/design</item>//16
+        <item>@drawable/design2</item>//17
+        <item>@drawable/arch2</item>//18
+        <item>@drawable/code3</item>//19
+
     </integer-array>
 
     <array name="primary_image_colors">
@@ -81,15 +86,19 @@
         <item>#ffffff</item>//4
         <item>#ffffff</item>//5
         <item>#ffffff</item>//6
-        <item>#ffffff</item>//7
+        <item>#8d7a3d</item>//7
         <item>#f13b25</item>//8
         <item>#2d6082</item>//9
-        <item>#ffffff</item>//10
-        <item>#ffffff</item>//11
-        <item>#362434</item>//12
-        <item>#ffffff</item>//13
-        <item>#ffffff</item>//14
+        <item>#76c991</item>//10
+        <item>#964361</item>//11
+        <item>#675762</item>//12
+        <item>#82ae7e</item>//13
+        <item>#5482a4</item>//14
         <item>#80a238</item>//15
+        <item>#d2b094</item>//16
+        <item>#413c40</item>//17
+        <item>#0e649f</item>//18
+        <item>#dc5338</item>//19
     </array>
     <array name="secondary_image_colors">
         <item>@color/colorTextSecondary</item>//1
