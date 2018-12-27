@@ -79,11 +79,11 @@ class SubjectFragment : Fragment() {
 
     fun updateSubject(newSubject: Subject) {
         group = newSubject.group
-        toolbar.title = subject.name
         subject = newSubject
         image.setImageDrawable(subject.getImage(context!!))
         groupText.text = "${group.number} гр 45%"
-        toolbar.title = subject.name
+        toolbar.title = newSubject.name
+        toolbar.refreshDrawableState()
         fab.backgroundTintList = ColorStateList.valueOf(subject.getPrimaryImageColor(context!!))
         coordinatorLayout.setBackgroundColor(subject.getPrimaryImageColor(context!!))
         collapsingToolbarLayout.setContentScrimColor(subject.getPrimaryImageColor(context!!))

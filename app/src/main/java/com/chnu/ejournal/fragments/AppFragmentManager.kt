@@ -99,6 +99,7 @@ class AppFragmentManager(val manager: FragmentManager, val context: Context, val
                 false
             }
             is LabsFragment -> {
+                println(789987)
                 subjectFragment.updateSubject()
                 manager.beginTransaction().hide(current).show(subjectFragment).commitAllowingStateLoss()
                 current = subjectFragment

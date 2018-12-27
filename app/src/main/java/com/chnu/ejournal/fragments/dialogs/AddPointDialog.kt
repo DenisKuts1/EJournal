@@ -40,11 +40,7 @@ class AddPointDialog: DialogFragment() {
             Observable.create<String> {
                 subscriber ->
                 try {
-                    lab.points[student] = numberPicker.value
-                    labsFragment.setUp()
-                    appFragmentManager.onBackPressed()
                     MyRetrofitApi.postPoint(student.id, lab.id, numberPicker.value.toDouble())
-
 
                 } catch (e: Exception){
                     //e.printStackTrace()
@@ -55,10 +51,16 @@ class AddPointDialog: DialogFragment() {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             { retrievedNews ->
-
+                                println(1)
+                                lab.points[student] = numberPicker.value
+                                println(2)
+                                labsFragment.setUp()
+                                println(3)
+                                //ppFragmentManager.onBackPressed()
+                                println(4)
                             },
                             { e ->
-
+                                e.printStackTrace()
                             }
                     )
         }.setNegativeButton("Cancel") { dialog, id ->

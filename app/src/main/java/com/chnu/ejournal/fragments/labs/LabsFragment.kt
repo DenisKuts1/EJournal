@@ -45,8 +45,10 @@ class LabsFragment: Fragment(){
         adapter.setListener {position ->
             val lab = adapter.getItems(position).lab
             val dialog = AddPointDialog()
+            dialog.appFragmentManager = appFragmentManager
             dialog.lab = lab
             dialog.student = student
+            dialog.labsFragment = this
             dialog.show(activity!!.supportFragmentManager, "tag")
 
         }
