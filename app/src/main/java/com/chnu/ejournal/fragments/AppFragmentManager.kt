@@ -18,7 +18,7 @@ import com.chnu.ejournal.fragments.subject.SubjectFragment
 import com.chnu.ejournal.fragments.subjects.SubjectsFragment
 import java.util.*
 
-class AppFragmentManager(val manager: FragmentManager, val context: Context, val navigation: BottomNavigationView,window123: Window) {
+class AppFragmentManager(val manager: FragmentManager, val context: Context, val navigation: BottomNavigationView, window123: Window) {
 
 
     private var current: Fragment

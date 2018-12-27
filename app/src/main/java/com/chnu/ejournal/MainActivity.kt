@@ -26,6 +26,7 @@ import kotlin.math.roundToInt
 class MainActivity : AppCompatActivity() {
 
     lateinit var appFragmentManager: AppFragmentManager
+    lateinit var navigation: BottomNavigationView
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_main)
+        navigation = findViewById(R.id.navigation)
 
         Observable.create<String> { subscriber ->
             try {
@@ -115,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { retrievedNews ->
-                            appFragmentManager = AppFragmentManager(supportFragmentManager, baseContext, navigation)
+                            appFragmentManager = AppFragmentManager(supportFragmentManager, baseContext, navigation, window)
                             navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
                             navigation.selectedItemId = R.id.navigation_schedule
                         },
