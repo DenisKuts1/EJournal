@@ -46,6 +46,8 @@ class LaunchActivity : AppCompatActivity() {
 
         // Managing authentication into google account
         val account = GoogleSignIn.getLastSignedInAccount(this)
+
+
         if(account != null) {
             beginWork(account.email!!, account.idToken!!)
         }

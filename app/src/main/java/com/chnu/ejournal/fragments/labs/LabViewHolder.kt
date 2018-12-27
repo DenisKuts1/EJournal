@@ -1,5 +1,7 @@
 package com.chnu.ejournal.fragments.labs
 
+import android.graphics.PorterDuff
+import android.graphics.drawable.ShapeDrawable
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.RelativeLayout
@@ -24,6 +26,14 @@ class LabViewHolder(itemView: View, val shapeColor: Int, val listener: (Int) -> 
     fun bindItem(item: LabItem) {
         nameField.text = item.name
         poitsField.text = "${item.point}/${item.maxPoint}"
+
+        if (item.name.contains("est")){ //THIS is PAIN !!!! REMOVE THIS SHIT ASAP
+            val drawable = layout.resources.getDrawable(R.drawable.even_better_design)
+            drawable.setColorFilter(shapeColor, PorterDuff.Mode.SRC_ATOP)
+            drawable.alpha = 100
+            layout.background=drawable
+
+        }
         // TODO magic with shape for layout
     }
 }
