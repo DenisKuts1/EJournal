@@ -53,7 +53,23 @@ class LabsFragment: Fragment(){
         recycledView.layoutManager = LinearLayoutManager(context)
         recycledView.adapter = adapter
         adapter.notifyDataSetChanged()
+    }
 
+    fun setUp(){
+        val adapter = LabAdapter(subject.getPrimaryImageColor(context!!))
+        adapter.setItems(student, subject)
+        adapter.setListener {position ->
+            val lab = adapter.getItems(position).lab
+            val dialog = AddPointDialog()
+            dialog.appFragmentManager = appFragmentManager
+            dialog.lab = lab
+            dialog.student = student
+            dialog.labsFragment = this
+            dialog.show(activity!!.supportFragmentManager, "tag")
 
+        }
+        recycledView.layoutManager = LinearLayoutManager(context)
+        recycledView.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 }

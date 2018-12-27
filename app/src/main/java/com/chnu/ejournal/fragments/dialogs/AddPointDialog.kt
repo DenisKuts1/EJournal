@@ -6,11 +6,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.widget.NumberPicker
+import com.chnu.ejournal.App
 import com.chnu.ejournal.MainActivity
 import com.chnu.ejournal.R
 import com.chnu.ejournal.entities.Lab
 import com.chnu.ejournal.entities.LabCreator
 import com.chnu.ejournal.entities.Student
+import com.chnu.ejournal.fragments.AppFragmentManager
+import com.chnu.ejournal.fragments.labs.LabsFragment
 import com.chnu.ejournal.retrofit.MyRetrofitApi
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -22,6 +25,8 @@ class AddPointDialog: DialogFragment() {
 
     lateinit var lab: Lab
     lateinit var student: Student
+    lateinit var labsFragment: LabsFragment
+    lateinit var appFragmentManager: AppFragmentManager
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
         val inflater = activity!!.layoutInflater
@@ -35,11 +40,14 @@ class AddPointDialog: DialogFragment() {
             Observable.create<String> {
                 subscriber ->
                 try {
-                    MyRetrofitApi.postPoint(student.id, lab.id, numberPicker.value.toDouble())
                     lab.points[student] = numberPicker.value
+                    labsFragment.setUp()
+                    appFragmentManager.onBackPressed()
+                    MyRetrofitApi.postPoint(student.id, lab.id, numberPicker.value.toDouble())
+
 
                 } catch (e: Exception){
-                    e.printStackTrace()
+                    //e.printStackTrace()
                 }
                 subscriber.onNext("")
                 subscriber.onCompleted()

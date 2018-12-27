@@ -108,5 +108,26 @@ class SubjectFragment : Fragment() {
 
     }
 
+    fun updateSubject() {
+
+        val students = subject.group.students
+        studentRecyclerView.layoutManager = LinearLayoutManager(context)
+
+        val size = Point()
+        activity!!.windowManager.defaultDisplay.getSize(size)
+        val adapter = StudentsAdapter(subject.getPrimaryImageColor(context!!))
+        adapter.setUpItems(students, subject)
+
+        adapter.setListener {position ->
+            println(adapter.items[position].student.name)
+            appFragmentManager.openLabFragment(adapter.items[position].student, subject)
+
+        }
+
+        studentRecyclerView.adapter = adapter
+
+
+    }
+
 
 }
